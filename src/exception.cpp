@@ -1,5 +1,5 @@
 #include "exception.hpp"
 
-void cdsp::ensure(type::boolean assertion) {
+void diffysynth::ensure(type::boolean assertion) {
 	assert(assertion);
 };

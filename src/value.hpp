@@ -44,10 +44,6 @@ namespace diffysynth { namespace value {
 	const type::cont_64 nan_64					= std::numeric_limits<type::cont_64>::quiet_NaN();
 #endif
 
-	// boolean
-	const type::boolean boolean_true			= static_cast<type::boolean>(true);
-	const type::boolean boolean_false			= static_cast<type::boolean>(false);
-
 	const type::time time_zero					= static_cast<type::time>(0.0);
 
 #ifdef DIFFYSYNTH_RESOLUTION_64
