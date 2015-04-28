@@ -1,19 +1,19 @@
-#ifndef CDSP_EXCEPTION
-#define CDSP_EXCEPTION
+#ifndef DIFFYSYNTH_EXCEPTION
+#define DIFFYSYNTH_EXCEPTION
 
 #include "define.hpp"
 
-#ifdef CDSP_WIN
+#ifdef DIFFYSYNTH_WIN
 #include <assert.h>
 #endif
 #include <exception>
 #include <sstream>
 #include <stdexcept>
 
-#include "types.hpp"
+#include "type.hpp"
 
-namespace cdsp {
-	extern void ensure(types::boolean assertion);
+namespace diffysynth {
+	extern void ensure(type::boolean assertion);
 
 	namespace exception {
 		class base : public std::runtime_error {

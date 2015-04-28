@@ -110,13 +110,15 @@ set(HEADERS
 	src/diffysynth.hpp
 	src/define.hpp
 	src/exception.hpp
-	src/types.hpp
-	src/values.hpp
+	src/type.hpp
+	src/value.hpp
+	src/estimator/estimator_base.hpp
 	src/primitive/primitive_base.hpp
 )
 	
 set(SOURCES
 	src/exception.cpp
+	src/estimator/estimator_base.cpp
 	src/primitive/primitive_base.cpp
 )
 

@@ -8,7 +8,7 @@
 
 #include "define.hpp"
 
-namespace diffysynth { namespace types {
+namespace diffysynth { namespace type {
 	typedef uint32_t disc_32_u;
 	typedef uint64_t disc_64_u;
 	typedef int32_t disc_32;

@@ -2,7 +2,7 @@
 #define DIFFYSYNTH
 
 #include "define.hpp"
-#include "types.hpp"
-#include "values.hpp"
+#include "type.hpp"
+#include "value.hpp"
 
 #endif
