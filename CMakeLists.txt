@@ -112,16 +112,28 @@ set(HEADERS
 	src/exception.hpp
 	src/type.hpp
 	src/value.hpp
-	src/differential_equation.hpp
+	src/diff_eq.hpp
+	src/system.hpp
 	src/estimator/estimator_base.hpp
+	src/estimator/runge_kutta_4.hpp
 	src/primitive/primitive_base.hpp
+	src/primitive/elementary.hpp
+	src/primitive/estimate.hpp
+	src/primitive/parameter.hpp
+	src/primitive/square_root.hpp
 )
 	
 set(SOURCES
 	src/exception.cpp
-	src/differential_equation.cpp
+	src/diff_eq.cpp
+	src/system.cpp
 	src/estimator/estimator_base.cpp
+	src/estimator/runge_kutta_4.cpp
 	src/primitive/primitive_base.cpp
+	src/primitive/elementary.cpp
+	src/primitive/estimate.cpp
+	src/primitive/parameter.cpp
+	src/primitive/square_root.cpp
 )
 
 #if (NOT DIFFYSYNTH_WITHOUT_CLIENT)
