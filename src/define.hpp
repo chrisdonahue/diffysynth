@@ -1,0 +1,32 @@
+#ifndef DIFFYSYNTH_DEFINE
+#define DIFFYSYNTH_DEFINE
+
+// DEBUG FLAG
+#define DIFFYSYNTH_DEBUG
+
+// OS FLAGS
+#ifdef _WIN32
+	#define DIFFYSYNTH_WIN
+	#ifdef _WIN64
+		#define DIFFYSYNTH_WIN_64
+	#else
+		#define DIFFYSYNTH_WIN_32
+	#endif
+#elif __APPLE__
+	#define DIFFYSYNTH_MAC
+#elif __linux
+	#define DIFFYSYNTH_LINUX
+#elif __unix
+	#define DIFFYSYNTH_UNIX
+#elif __posix
+	#define DIFFYSYNTH_POSIX
+#endif
+
+// SAMPLE BIT DEPTH FLAG
+#define DIFFYSYNTH_RESOLUTION_64
+//#define DIFFYSYNTH_SAMPLE_64
+
+// UNUSED PARAMETER
+#define DIFFYSYNTH_UNUSED_PARAMETER(P) P;
+
+#endif
