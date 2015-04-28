@@ -39,6 +39,17 @@ type::boolean primitive::base::ready() {
 	return true;
 };
 
+type::diff primitive::base::evaluate(estimator::base::state& es) {
+#ifdef DIFFYSYNTH_DEBUG_API
+	auto it = children.begin();
+	while (it != children.end()) {
+		ensure(it->second != nullptr);
+	}
+#endif
+
+	return value::diff_zero;
+};
+
 void primitive::base::child_register(type::string child_specifier) {
 	children.insert(std::make_pair(child_specifier, nullptr));
 };

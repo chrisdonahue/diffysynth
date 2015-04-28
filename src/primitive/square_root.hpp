@@ -6,7 +6,7 @@
 #include "primitive_base.hpp"
 
 namespace diffysynth { namespace primitive {
-	class square_root : base {
+	class square_root : public base {
 	public:
 		square_root();
 

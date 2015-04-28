@@ -23,7 +23,7 @@ namespace diffysynth { namespace type {
 #endif
 	typedef cont_64 time;
 	typedef std::string string;
-	typedef disc_64_u specifier;
+	typedef disc_32_u id;
 }}
 
 #endif

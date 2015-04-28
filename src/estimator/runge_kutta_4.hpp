@@ -4,9 +4,9 @@
 #include "estimator_base.hpp"
 
 namespace diffysynth { namespace estimator {
-	class runge_kutta_4 : base {
+	class runge_kutta_4 : public base {
 	public:
-		class state : base::state {
+		class runge_kutta_4_state : public base::state {
 		public:
 		protected:
 		private:

@@ -3,7 +3,7 @@
 using namespace diffysynth;
 
 primitive::square_root::square_root() :
-base("*")
+	base("sqrt")
 {
 	child_register("argument");
 };

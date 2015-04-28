@@ -4,7 +4,7 @@
 #include "primitive_base.hpp"
 
 namespace diffysynth { namespace primitive {
-	class multiply : base {
+	class multiply : public base {
 	public:
 		multiply();
 
