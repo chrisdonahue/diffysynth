@@ -13,18 +13,20 @@ type::disc_32_u primitive::base::children_num_get() {
 
 primitive::base* primitive::base::child_get(type::string child_specifier) {
 	auto it = children.find(child_specifier);
+#ifdef DIFFYSYNTH_DEBUG_API
+	diffysynth::ensure(it != children.end());
+#endif
+
 	return it->second;
 };
 
 void primitive::base::child_set(type::string child_specifier, base* child) {
-	auto it = children.find(child_specifier);
-	type::boolean child_specifier_registered = it != children.end();
-
 #ifdef DIFFYSYNTH_DEBUG_API
-	diffysynth::ensure(child_specifier_registered);
+	auto it = children.find(child_specifier);
+	diffysynth::ensure(it != children.end());
 #endif
 
-	children.insert(std::make_pair(child_specifier, child));
+	children[child_specifier] = child;
 };
 
 type::boolean primitive::base::ready() {
@@ -44,6 +46,7 @@ type::diff primitive::base::evaluate(evaluate_signature) {
 	auto it = children.begin();
 	while (it != children.end()) {
 		ensure(it->second != nullptr);
+		it++;
 	}
 #endif
 

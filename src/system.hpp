@@ -61,7 +61,8 @@ namespace diffysynth {
 			}
 
 			for (type::id identifier = 0; identifier < diff_eqs_num; identifier++) {
-				dxdt[identifier] = diff_eqs[identifier]->evaluate(parameters, solutions, derivatives, t);
+				type::diff diff_eq_result = diff_eqs[identifier]->evaluate(parameters, solutions, derivatives, t);
+				dxdt[identifier] = diff_eq_result;
 			}
 		};
 

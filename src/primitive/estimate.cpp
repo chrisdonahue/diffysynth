@@ -9,5 +9,5 @@ primitive::estimate::estimate() :
 type::diff primitive::estimate::evaluate(evaluate_signature) {
 	base::evaluate(evaluate_arguments);
 
-	return value::diff_zero;
+	return solutions[0];
 };
