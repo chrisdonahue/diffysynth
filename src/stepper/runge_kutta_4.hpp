@@ -1,9 +1,9 @@
 #ifndef DIFFYSYNTH_RUNGE_KUTTA_4
 #define DIFFYSYNTH_RUNGE_KUTTA_4
 
-#include "estimator_base.hpp"
+#include "stepper_base.hpp"
 
-namespace diffysynth { namespace estimator {
+namespace diffysynth { namespace stepper {
 	class runge_kutta_4 : public base {
 	public:
 		template <int derivatives_num, int param_num>

@@ -7,14 +7,13 @@
 
 #include "../primitive/primitive_base.hpp"
 
-namespace diffysynth { namespace estimator {
+namespace diffysynth { namespace stepper {
 	class base {
 	public:
 		class state {
 		public:
 		protected:
 		private:
-			std::array<type::diff, 
 		};
 
 		base();
