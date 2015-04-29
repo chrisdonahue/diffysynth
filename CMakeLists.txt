@@ -29,18 +29,6 @@ if(GIT_EXECUTABLE)
     message("Git commit hash: ${DIFFYSYNTH_BUILD_HASH}")
 endif()
 
-# boost
-set(Boost_USE_STATIC_LIBS OFF) 
-set(Boost_USE_MULTITHREADED OFF)
-set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost REQUIRED)
-#find_package(Boost COMPONENTS system filesystem REQUIRED)
-include_directories(${Boost_INCLUDE_DIR})
-
-# odeint
-set(odeint_root C:\\Code\\diffysynth\\odeint-v2)
-include_directories(${odeint_root}/include)
-
 # Options
 option(DIFFYSYNTH_BUILD_SHARED "Build shared library" ON)
 option(DIFFYSYNTH_BUILD_TESTS "Build the diffysynth test apps" ON)
@@ -123,6 +111,8 @@ set(HEADERS
 	src/primitive/estimate.hpp
 	src/primitive/parameter.hpp
 	src/primitive/square_root.hpp
+	src/estimator/estimator_base.hpp
+	src/estimator/runge_kutta.hpp
 )
 	
 set(SOURCES
@@ -134,6 +124,8 @@ set(SOURCES
 	src/primitive/estimate.cpp
 	src/primitive/parameter.cpp
 	src/primitive/square_root.cpp
+	src/estimator/estimator_base.cpp
+	src/estimator/runge_kutta.cpp
 )
 
 if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
@@ -157,7 +149,6 @@ source_group("Sources" FILES ${SOURCES})
 add_library(diffysynth STATIC
 			${HEADERS}
 			${SOURCES})
-target_link_libraries(diffysynth ${Boost_LIBRARIES})
 
 if (WIN32)
 	# On Windows libs have the same file ending (.lib)
