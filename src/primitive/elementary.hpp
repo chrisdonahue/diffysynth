@@ -8,7 +8,7 @@ namespace diffysynth { namespace primitive {
 	public:
 		multiply();
 
-		type::diff evaluate(estimator::base::state& es) override;
+		type::diff evaluate(evaluate_signature) override;
 	};
 }}
 

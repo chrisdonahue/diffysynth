@@ -11,6 +11,5 @@
 #include "primitive/square_root.hpp"
 #include "diff_eq.hpp"
 #include "system.hpp"
-#include "estimator/runge_kutta_4.hpp"
 
 #endif

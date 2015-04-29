@@ -10,7 +10,8 @@
 #include "../type.hpp"
 #include "../value.hpp"
 
-#include "../estimator/estimator_base.hpp"
+#define evaluate_signature type::diff* parameters, type::diff* solutions, type::diff* derivatives, type::diff t
+#define evaluate_arguments parameters, solutions, derivatives, t
 
 namespace diffysynth { namespace primitive {
 	class base {
@@ -20,7 +21,7 @@ namespace diffysynth { namespace primitive {
 		void child_set(type::string child_specifier, base* child);
 		type::boolean ready();
 
-		virtual type::diff evaluate(estimator::base::state& es) = 0;
+		virtual type::diff evaluate(evaluate_signature) = 0;
 
 		void as_string(std::stringstream& ss);
 

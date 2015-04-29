@@ -1,6 +1,9 @@
 #ifndef DIFFYSYNTH_SYSTEM
 #define DIFFYSYNTH_SYSTEM
 
+#include <array>
+#include <boost/array.hpp>
+
 #include <map>
 
 #include "define.hpp"
@@ -10,39 +13,63 @@
 #include "diff_eq.hpp"
 
 namespace diffysynth {
+	template <type::id diff_eqs_num>
 	class system {
+	private:
+		typedef boost::array<double, diff_eqs_num> odeint_state_type;
+
 	public:
-		class system_state {
-			system_state();
-
-			type::diff* derivatives_get() {
-				return derivatives;
-			};
-
-			type::diff* solutions_get() {
-				return solutions;
-			};
-
-			type::diff* parameters_get() {
-				return parameters;
-			};
-		protected:
-		private:
-			type::diff* solutions;
-			type::diff* derivatives;
-			type::diff* parameters;
+		system() {
+			for (type::id identifier = 0; identifier < diff_eqs_num; identifier++) {
+				diff_eqs[identifier] = nullptr;
+			}
+			parameters = nullptr;
+			solutions = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * diff_eqs_num));
+			derivatives = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * diff_eqs_num));
+		};
+		~system() {
+			//free(parameters);
+			free(solutions);
+			free(derivatives);
 		};
 
-		system();
+		void diff_eq_set(type::id identifier, diff_eq* instance) {
+		#ifdef DIFFYSYNTH_DEBUG_API
+			ensure(identifier < diff_eqs_num);
+		#endif
 
-		void diff_eq_set(type::string specifier, diff_eq* instance);
-		diff_eq* diff_eq_get(type::string specifier);
+			diff_eqs[identifier] = instance;
+		};
 
-		system_state* system_state_allocate();
-		type::diff evaluate(type::string specifier, system_state* state);
+		diff_eq* diff_eq_get(type::id identifier) {
+		#ifdef DIFFYSYNTH_DEBUG_API
+			ensure(identifier < diff_eqs_num);
+		#endif
+
+			return diff_eqs[identifier];
+		};
+
+		void evaluate(const odeint_state_type& x, odeint_state_type& dxdt, double t) {
+		#ifdef DIFFYSYNTH_DEBUG_API
+			for (type::id identifier = 0; identifier < diff_eqs_num; identifier++) {
+				ensure(diff_eqs[identifier] != nullptr);
+			}
+		#endif
+
+			for (type::id identifier = 0; identifier < diff_eqs_num; identifier++) {
+				solutions[identifier] = x[identifier];
+			}
+
+			for (type::id identifier = 0; identifier < diff_eqs_num; identifier++) {
+				dxdt[identifier] = diff_eqs[identifier]->evaluate(parameters, solutions, derivatives, t);
+			}
+		};
 
 	private:
-		std::map<type::string, diff_eq*> diff_eqs;
+		type::diff* parameters;
+		type::diff* solutions;
+		type::diff* derivatives;
+		std::array<diff_eq*, diff_eqs_num> diff_eqs;
 	};
 }
 

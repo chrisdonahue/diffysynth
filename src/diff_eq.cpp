@@ -21,10 +21,10 @@ void diff_eq::condition_initial_set(type::diff _condition_initial) {
 	condition_initial = _condition_initial;
 };
 
-type::diff diff_eq::evaluate(estimator::base::state& es) {
+type::diff diff_eq::evaluate(evaluate_signature) {
 #ifdef DIFFYSYNTH_DEBUG_API
 	ensure(root != nullptr);
 #endif
 
-	return root->evaluate(es);
+	return root->evaluate(evaluate_arguments);
 };

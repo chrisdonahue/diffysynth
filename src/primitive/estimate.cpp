@@ -6,8 +6,8 @@ primitive::estimate::estimate() :
 	base("estimate")
 {};
 
-type::diff primitive::estimate::evaluate(estimator::base::state& es) {
-	base::evaluate(es);
+type::diff primitive::estimate::evaluate(evaluate_signature) {
+	base::evaluate(evaluate_arguments);
 
 	return value::diff_zero;
 };

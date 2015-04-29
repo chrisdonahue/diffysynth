@@ -8,8 +8,8 @@ primitive::square_root::square_root() :
 	child_register("argument");
 };
 
-type::diff primitive::square_root::evaluate(estimator::base::state& es) {
-	base::evaluate(es);
+type::diff primitive::square_root::evaluate(evaluate_signature) {
+	base::evaluate(evaluate_arguments);
 
-	return sqrt(child_get("argument")->evaluate(es));
+	return sqrt(child_get("argument")->evaluate(evaluate_arguments));
 };

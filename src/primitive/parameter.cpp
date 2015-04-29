@@ -6,8 +6,9 @@ primitive::parameter::parameter() :
 base("parameter")
 {};
 
-type::diff primitive::parameter::evaluate(estimator::base::state& es) {
-	base::evaluate(es);
+type::diff primitive::parameter::evaluate(evaluate_signature) {
+	base::evaluate(evaluate_arguments);
 
-	return value::diff_zero;
+	// TODO: fix this
+	return t;
 };

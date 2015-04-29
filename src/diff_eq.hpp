@@ -17,7 +17,7 @@ namespace diffysynth {
 		void reset();
 		void condition_initial_set(type::diff _condition_initial);
 
-		type::diff evaluate(estimator::base::state& es);
+		type::diff evaluate(evaluate_signature);
 
 	private:
 		type::diff condition_initial;

@@ -39,7 +39,7 @@ type::boolean primitive::base::ready() {
 	return true;
 };
 
-type::diff primitive::base::evaluate(estimator::base::state& es) {
+type::diff primitive::base::evaluate(evaluate_signature) {
 #ifdef DIFFYSYNTH_DEBUG_API
 	auto it = children.begin();
 	while (it != children.end()) {
