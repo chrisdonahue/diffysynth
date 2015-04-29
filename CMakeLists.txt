@@ -111,8 +111,8 @@ set(HEADERS
 	src/primitive/estimate.hpp
 	src/primitive/parameter.hpp
 	src/primitive/square_root.hpp
-	src/estimator/estimator_base.hpp
-	src/estimator/runge_kutta.hpp
+	src/stepper/stepper_base.hpp
+	src/stepper/runge_kutta_4.hpp
 )
 	
 set(SOURCES
@@ -124,8 +124,8 @@ set(SOURCES
 	src/primitive/estimate.cpp
 	src/primitive/parameter.cpp
 	src/primitive/square_root.cpp
-	src/estimator/estimator_base.cpp
-	src/estimator/runge_kutta.cpp
+	src/stepper/stepper_base.cpp
+	src/stepper/runge_kutta_4.cpp
 )
 
 if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
