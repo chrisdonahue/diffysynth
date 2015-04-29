@@ -29,12 +29,21 @@ if(GIT_EXECUTABLE)
     message("Git commit hash: ${DIFFYSYNTH_BUILD_HASH}")
 endif()
 
+# boost
+set(Boost_USE_STATIC_LIBS OFF) 
+set(Boost_USE_MULTITHREADED OFF)
+set(Boost_USE_STATIC_RUNTIME OFF)
+find_package(Boost REQUIRED)
+#find_package(Boost COMPONENTS system filesystem REQUIRED)
+include_directories(${Boost_INCLUDE_DIR})
+
+# odeint
+set(odeint_root C:\\Code\\diffysynth\\odeint-v2)
+include_directories(${odeint_root}/include)
+
 # Options
 option(DIFFYSYNTH_BUILD_SHARED "Build shared library" ON)
 option(DIFFYSYNTH_BUILD_TESTS "Build the diffysynth test apps" ON)
-
-# Include directories
-# include_directories("${PROJECT_BINARY_DIR}")
 
 # fix inline
 include(CheckCSourceCompiles)
@@ -93,13 +102,13 @@ endif()
 configure_file(
        "${PROJECT_SOURCE_DIR}/config.h.cmake"
        "${PROJECT_BINARY_DIR}/diffysynth_config.h")
+include_directories("${PROJECT_SOURCE_DIR}/src")
+include_directories("${PROJECT_BINARY_DIR}")
 
 if (MSVC)
 	# Turn off stupid microsoft security warnings.
 	#add_definitions(-D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE)
 endif(MSVC)
-
-#include_directories("${PROJECT_SOURCE_DIR}/src")
 
 set(HEADERS
 	src/diffysynth.hpp
@@ -109,8 +118,6 @@ set(HEADERS
 	src/value.hpp
 	src/diff_eq.hpp
 	src/system.hpp
-	src/estimator/estimator_base.hpp
-	src/estimator/runge_kutta_4.hpp
 	src/primitive/primitive_base.hpp
 	src/primitive/elementary.hpp
 	src/primitive/estimate.hpp
@@ -122,31 +129,12 @@ set(SOURCES
 	src/exception.cpp
 	src/diff_eq.cpp
 	src/system.cpp
-	src/estimator/estimator_base.cpp
-	src/estimator/runge_kutta_4.cpp
 	src/primitive/primitive_base.cpp
 	src/primitive/elementary.cpp
 	src/primitive/estimate.cpp
 	src/primitive/parameter.cpp
 	src/primitive/square_root.cpp
 )
-
-#if (NOT DIFFYSYNTH_WITHOUT_CLIENT)
-	#list(APPEND SOURCES
-	#	lib/client.c
-	#	)
-#endif()
-
-#if (WIN32)
-#	list(APPEND SOURCES
-#		lib/DIFFYSYNTH-plat-win.c
-#		)
-#else()
-	#list(APPEND SOURCES
-	#	lib/DIFFYSYNTH-plat-unix.c
-	#	)
-#endif()
-
 
 if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     include (CheckCCompilerFlag)
@@ -161,7 +149,7 @@ if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     endif(UNIX)
 endif ()
 
-source_group("Sources"          FILES ${SOURCES})
+source_group("Sources" FILES ${SOURCES})
 
 #
 # Create the lib.
@@ -169,6 +157,7 @@ source_group("Sources"          FILES ${SOURCES})
 add_library(diffysynth STATIC
 			${HEADERS}
 			${SOURCES})
+target_link_libraries(diffysynth ${Boost_LIBRARIES})
 
 if (WIN32)
 	# On Windows libs have the same file ending (.lib)
