@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(diffysynth)
 
+# project attributes
 set(PACKAGE "diffysynth")
 set(CPACK_PACKAGE_NAME "${PACKAGE}")
 set(CPACK_PACKAGE_VERSION_MAJOR "0")
@@ -9,17 +10,19 @@ set(CPACK_PACKAGE_VERSION_MINOR "1")
 set(CPACK_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}")
 set(CPACK_PACKAGE_VENDOR "christopherdonahue@gmail.com")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PACKAGE} ${PACKAGE_VERSION}")
-set(SOVERSION "5")
-set(CPACK_SOURCE_GENERATOR "TGZ")
 set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
 set(VERSION "${CPACK_PACKAGE_VERSION}")
-
 set(DIFFYSYNTH_LIBRARY_VERSION ${CPACK_PACKAGE_VERSION})
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/")
 
-message(STATUS "CMAKE_TOOLCHAIN_FILE='${CMAKE_TOOLCHAIN_FILE}'")
+# try to find boost
+set(Boost_DEBUG ON)
+set(Boost_USE_STATIC_LIBS OFF) 
+set(Boost_USE_MULTITHREADED OFF)  
+set(Boost_USE_STATIC_RUNTIME OFF)
+find_package(Boost 1.58.0 COMPONENTS thread)
 
-# Try to find the current Git hash.
+# try to find the current Git hash
 find_package(Git)
 if(GIT_EXECUTABLE)
 	execute_process(
@@ -35,12 +38,12 @@ endif()
 
 # Options
 option(DIFFYSYNTH_BUILD_SHARED "Build shared library" ON)
-option(DIFFYSYNTH_BUILD_TESTS "Don't build the diffysynth test apps" ON)
+option(DIFFYSYNTH_BUILD_TESTS "Build the diffysynth test apps" ON)
 
 # Include directories
-include_directories("${PROJECT_BINARY_DIR}")
+# include_directories("${PROJECT_BINARY_DIR}")
 
-# Fix inline
+# fix inline
 include(CheckCSourceCompiles)
 foreach(KEYWORD "inline" "__inline__" "__inline")
 	set(CMAKE_REQUIRED_DEFINITIONS "-DKEYWORD=${KEYWORD}")
@@ -51,7 +54,6 @@ foreach(KEYWORD "inline" "__inline__" "__inline")
 		int main(int argc, char **argv) { a(); return 0; }
 		" HAVE_${KEYWORD})
 endforeach()
-
 if (NOT HAVE_inline)
 	if (HAVE___inline__)
 		set(inline __inline__)
@@ -104,7 +106,7 @@ if (MSVC)
 	#add_definitions(-D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE)
 endif(MSVC)
 
-include_directories("${PROJECT_SOURCE_DIR}/src")
+#include_directories("${PROJECT_SOURCE_DIR}/src")
 
 set(HEADERS
 	src/diffysynth.hpp
@@ -166,8 +168,6 @@ if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     endif(UNIX)
 endif ()
 
-#source_group("Headers Private"  FILES ${HDR_PRIVATE})
-#source_group("Headers Public"   FILES ${HDR_PUBLIC})
 source_group("Sources"          FILES ${SOURCES})
 
 #
@@ -176,6 +176,8 @@ source_group("Sources"          FILES ${SOURCES})
 add_library(diffysynth STATIC
 			${HEADERS}
 			${SOURCES})
+include_directories(${Boost_INCLUDE_DIRS}) 
+target_link_libraries(diffysynth ${Boost_LIBRARIES})
 
 if (WIN32)
 	# On Windows libs have the same file ending (.lib)
@@ -226,7 +228,7 @@ if (DIFFYSYNTH_BUILD_TESTS)
 		source_group("Sources"   FILES ${TEST_SRCS})
 		add_executable(${TEST_NAME} ${TEST_SRCS} ${TEST_HDR})
 		
-		target_link_libraries(${TEST_NAME} diffysynth)
+		target_link_libraries(${TEST_NAME} diffysynth ${Boost_LIBRARIES})
 		add_dependencies(${TEST_NAME} diffysynth)
 
 		# Set test app specific defines.
@@ -258,7 +260,7 @@ libdir=\${exec_prefix}/lib${LIB_SUFFIX}
 includedir=\${prefix}/include
 
 Name: libdiffysynth
-Description: digital audio processing in C++
+Description: differential equation solver for audio synthesis
 Version: ${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}
 
 Libs: -L\${libdir} -ldiffysynth
