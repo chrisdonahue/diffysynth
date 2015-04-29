@@ -15,13 +15,6 @@ set(VERSION "${CPACK_PACKAGE_VERSION}")
 set(DIFFYSYNTH_LIBRARY_VERSION ${CPACK_PACKAGE_VERSION})
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/")
 
-# try to find boost
-set(Boost_DEBUG ON)
-set(Boost_USE_STATIC_LIBS OFF) 
-set(Boost_USE_MULTITHREADED OFF)  
-set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.58.0 COMPONENTS thread)
-
 # try to find the current Git hash
 find_package(Git)
 if(GIT_EXECUTABLE)
@@ -176,8 +169,6 @@ source_group("Sources"          FILES ${SOURCES})
 add_library(diffysynth STATIC
 			${HEADERS}
 			${SOURCES})
-include_directories(${Boost_INCLUDE_DIRS}) 
-target_link_libraries(diffysynth ${Boost_LIBRARIES})
 
 if (WIN32)
 	# On Windows libs have the same file ending (.lib)
@@ -228,7 +219,7 @@ if (DIFFYSYNTH_BUILD_TESTS)
 		source_group("Sources"   FILES ${TEST_SRCS})
 		add_executable(${TEST_NAME} ${TEST_SRCS} ${TEST_HDR})
 		
-		target_link_libraries(${TEST_NAME} diffysynth ${Boost_LIBRARIES})
+		target_link_libraries(${TEST_NAME} diffysynth)
 		add_dependencies(${TEST_NAME} diffysynth)
 
 		# Set test app specific defines.

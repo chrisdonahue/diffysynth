@@ -3,7 +3,6 @@
 using namespace diffysynth;
 
 system::system() :
-	diff_eqs(0)
 {};
 
 void system::diff_eq_set(type::string specifier, diff_eq* instance) {
@@ -19,7 +18,7 @@ diff_eq* system::diff_eq_get(type::string specifier) {
 	return it->second;
 };
 
-type::diff system::evaluate(type::string specifier, estimator::base::state& es) {
+type::diff system::evaluate(type::string specifier, system_state* state) {
 	auto it = diff_eqs.find(specifier);
 #ifdef DIFFYSYNTH_DEBUG_API
 	ensure(it != diff_eqs.end());
