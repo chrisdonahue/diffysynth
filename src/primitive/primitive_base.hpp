@@ -10,8 +10,8 @@
 #include "../type.hpp"
 #include "../value.hpp"
 
-#define evaluate_signature type::diff* parameters, type::diff* solutions, type::diff* derivatives, type::diff t
-#define evaluate_arguments parameters, solutions, derivatives, t
+#define evaluate_signature type::diff* solutions, type::diff* parameters, type::diff* derivatives, type::diff t
+#define evaluate_arguments solutions, parameters, derivatives, t
 
 namespace diffysynth { namespace primitive {
 	class base {

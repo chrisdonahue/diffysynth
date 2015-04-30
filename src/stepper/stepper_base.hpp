@@ -16,6 +16,7 @@ namespace diffysynth { namespace stepper {
 		virtual void integrate() = 0;
 
 		type::diff* solutions_get(type::id identifier = 0);
+		type::diff* parameters_get(type::id identifier = 0);
 
 	protected:
 		base();
@@ -23,8 +24,8 @@ namespace diffysynth { namespace stepper {
 		~base();
 
 		type::boolean prepared;
-		type::diff* parameters;
 		type::diff* solutions;
+		type::diff* parameters;
 		type::diff* derivatives;
 
 	private:

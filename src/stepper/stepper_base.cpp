@@ -4,17 +4,17 @@ using namespace diffysynth;
 
 stepper::base::base() :
 	prepared(false),
-	parameters(nullptr),
 	solutions(nullptr),
 	derivatives(nullptr),
+	parameters(nullptr),
 	system(nullptr)
 {};
 
 stepper::base::base(const diff_eq_system* _system) :
 	prepared(false),
-	parameters(nullptr),
 	solutions(nullptr),
 	derivatives(nullptr),
+	parameters(nullptr),
 	system(_system)
 {};
 
@@ -37,9 +37,17 @@ void stepper::base::prepare() {
 	ensure(!prepared);
 #endif
 
-	parameters = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * system->parameters_num_get()));;
-	solutions = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * system->diff_eqs_num_get()));
-	derivatives = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * system->diff_eqs_num_get()));
+	type::id diff_eqs_num = system->diff_eqs_num_get();
+	if (diff_eqs_num > 0) {
+		solutions = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * diff_eqs_num));
+		derivatives = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * diff_eqs_num));
+	}
+
+	type::id parameters_num = system->parameters_num_get();
+	if (parameters_num > 0) {
+		parameters = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * parameters_num));;
+	}
+
 	prepared = true;
 };
 
@@ -48,8 +56,8 @@ void stepper::base::release() {
 	ensure(prepared);
 #endif
 
-	free(parameters);
 	free(solutions);
+	free(parameters);
 	free(derivatives);
 	prepared = false;
 };
@@ -66,4 +74,12 @@ type::diff* stepper::base::solutions_get(type::id identifier) {
 #endif
 
 	return solutions + identifier;
+};
+
+type::diff* stepper::base::parameters_get(type::id identifier) {
+#ifdef DIFFYSYNTH_DEBUG_API
+	ensure(prepared);
+#endif
+
+	return parameters + identifier;
 };

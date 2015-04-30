@@ -16,8 +16,8 @@ namespace diffysynth {
 	public:
 		diff_eq_system(type::id _diff_eqs_num, type::id _parameters_num);
 
-		type::id parameters_num_get() const;
 		type::id diff_eqs_num_get() const;
+		type::id parameters_num_get() const;
 
 		void diff_eq_system::diff_eq_set(type::id identifier, diff_eq* instance);
 		diff_eq* diff_eq_get(type::id identifier);
@@ -25,9 +25,9 @@ namespace diffysynth {
 		void evaluate(evaluate_signature) const;
 
 	private:
-		type::id parameters_num;
 		type::id diff_eqs_num;
 		std::vector<diff_eq*> diff_eqs;
+		type::id parameters_num;
 	};
 }
 
