@@ -37,27 +37,27 @@ void stepper::runge_kutta_4::step(step_signature) {
 	// calculate dy_1
 	system->evaluate(const_cast<type::diff*>(solutions), parameters, t, derivatives_0);
 	for (type::id i = 0; i < diff_eqs_num; i++) {
-		solutions_temp[i] = solutions[i] + 0.5 * derivatives_0[i];
+		solutions_temp[i] = solutions[i] + 0.5 * dt * derivatives_0[i];
 	}
 
 	// calculate dy_2
-	system->evaluate(const_cast<type::diff*>(solutions), parameters, t + 0.5 * dt, derivatives_1);
+	system->evaluate(const_cast<type::diff*>(solutions_temp), parameters, t + 0.5 * dt, derivatives_1);
 	for (type::id i = 0; i < diff_eqs_num; i++) {
-		solutions_temp[i] = solutions[i] + 0.5 * derivatives_1[i];
+		solutions_temp[i] = solutions[i] + 0.5 * dt * derivatives_1[i];
 	}
 	
 	// calculate dy_3
-	system->evaluate(const_cast<type::diff*>(solutions), parameters, t + 0.5 * dt, derivatives_2);
+	system->evaluate(const_cast<type::diff*>(solutions_temp), parameters, t + 0.5 * dt, derivatives_2);
 	for (type::id i = 0; i < diff_eqs_num; i++) {
-		solutions_temp[i] = solutions[i] + derivatives_2[i];
+		solutions_temp[i] = solutions[i] + dt * derivatives_2[i];
 	}
 
 	// calculate dy_4
-	system->evaluate(const_cast<type::diff*>(solutions), parameters, t + dt, derivatives_3);
+	system->evaluate(const_cast<type::diff*>(solutions_temp), parameters, t + dt, derivatives_3);
 
 	// calculate solutions
 	for (type::id i = 0; i < diff_eqs_num; i++) {
-		solutions[i] =
+		solutions[i] +=
 		(1.0 / 6.0) * dt * (
 			derivatives_0[i] +
 			derivatives_1[i] * 2.0 +
