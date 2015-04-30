@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 
 	// set parameters
 	type::diff* parameters = sin_cos_stepper.parameters_get();
-	parameters[0] = 440.0;
+	parameters[0] = 10000.0;
 
 	// integrate
 	type::time t = 0.0;

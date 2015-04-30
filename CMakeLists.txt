@@ -115,6 +115,8 @@ set(HEADERS
 	src/primitive/time.hpp
 	src/stepper/stepper_base.hpp
 	src/stepper/runge_kutta_4.hpp
+	src/gp/population.hpp
+	src/gp/evaluator.hpp
 )
 	
 set(SOURCES
@@ -130,6 +132,8 @@ set(SOURCES
 	src/primitive/time.cpp
 	src/stepper/stepper_base.cpp
 	src/stepper/runge_kutta_4.cpp
+	src/gp/population.cpp
+	src/gp/evaluator.cpp
 )
 
 if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
