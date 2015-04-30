@@ -107,6 +107,7 @@ set(HEADERS
 	src/diff_eq.hpp
 	src/diff_eq_system.hpp
 	src/primitive/primitive_base.hpp
+	src/primitive/constant.hpp
 	src/primitive/elementary.hpp
 	src/primitive/estimate.hpp
 	src/primitive/parameter.hpp
@@ -121,6 +122,7 @@ set(SOURCES
 	src/diff_eq.cpp
 	src/diff_eq_system.cpp
 	src/primitive/primitive_base.cpp
+	src/primitive/constant.cpp
 	src/primitive/elementary.cpp
 	src/primitive/estimate.cpp
 	src/primitive/parameter.cpp
@@ -221,6 +223,7 @@ if (DIFFYSYNTH_BUILD_TESTS)
 
 	# test apps
 	create_test_app(test_rosetta "test/test_rosetta.cpp")
+	create_test_app(test_sin_cos "test/test_sin_cos.cpp")
 endif(DIFFYSYNTH_BUILD_TESTS)
 
 if (UNIX)
