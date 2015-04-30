@@ -38,11 +38,15 @@ int main(int argc, char* argv[]) {
 	type::time t_prime = 10.0;
 	type::time dt = 0.1;
 	type::diff solution = 1.0;
+	type::diff solution_exact = 1.0;
+	type::diff error_relative = 0.0;
 	type::disc_32 steps_num = ceil((t_prime - t) / dt);
 	for (type::disc_32 step = 0; step < steps_num; step++) {
 		rosetta_stepper.step(t, dt);
 		t += dt;
 		solution = solutions[0];
+		solution_exact = pow(t * t / 4 + 1, 2);
+		error_relative = (solution / solution_exact) - 1.0;
 	}
 
 	// release
