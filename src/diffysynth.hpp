@@ -5,6 +5,7 @@
 #include "type.hpp"
 #include "value.hpp"
 
+#include "primitive/constant.hpp"
 #include "primitive/elementary.hpp"
 #include "primitive/estimate.hpp"
 #include "primitive/parameter.hpp"

@@ -1,17 +1,16 @@
-#ifndef DIFFYSYNTH_PRIMITIVE_ELEMENTARY
-#define DIFFYSYNTH_PRIMITIVE_ELEMENTARY
+#ifndef DIFFYSYNTH_PRIMITIVE_CONSTANT
+#define DIFFYSYNTH_PRIMITIVE_CONSTANT
 
 #include "primitive_base.hpp"
 
 namespace diffysynth { namespace primitive {
-	class multiply : public base {
+	class constant : public base {
 	public:
-		multiply(type::id _children_num);
+		constant(type::diff _value);
 
 		type::diff evaluate(evaluate_signature) override;
-
-		type::id children_num;
 	private:
+		type::diff value;
 	};
 }}
 
