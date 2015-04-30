@@ -54,12 +54,14 @@ int main(int argc, char* argv[]) {
 	type::time t = 0.0;
 	type::time t_prime = 10.0;
 	type::time dt = 1.0 / 44100.0;
-	type::diff solution = 1.0;
+	type::diff cos_solution = 1.0;
+	type::diff sin_solution = 0.0;
 	type::disc_32 steps_num = static_cast<type::disc_32>(ceil((t_prime - t) / dt));
 	for (type::disc_32 step = 0; step < steps_num; step++) {
 		sin_cos_stepper.step(t, dt);
 		t += dt;
-		solution = solutions[0];
+		cos_solution = solutions[0];
+		sin_solution = solutions[1];
 	}
 
 	// release
