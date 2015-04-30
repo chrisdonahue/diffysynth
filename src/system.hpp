@@ -15,23 +15,19 @@ namespace diffysynth {
 	class system {
 	public:
 		system(type::id _diff_eqs_num, type::id _parameters_num);
-		~system();
+
+		type::id parameters_num_get() const;
+		type::id diff_eqs_num_get() const;
 
 		void system::diff_eq_set(type::id identifier, diff_eq* instance);
 		diff_eq* diff_eq_get(type::id identifier);
 
-		void prepare();
-		void release();
-		void evaluate();
+		void evaluate(evaluate_signature) const;
 
 	private:
-		type::boolean prepared;
 		type::id parameters_num;
-		type::diff* parameters;
 		type::id diff_eqs_num;
 		std::vector<diff_eq*> diff_eqs;
-		type::diff* solutions;
-		type::diff* derivatives;
 	};
 }
 

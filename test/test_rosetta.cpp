@@ -20,14 +20,17 @@ int main(int argc, char* argv[]) {
 	diffysynth::system rosetta_system(1, 0);
 
 	// create stepper
-	diffysynth::stepper::runge_kutta_4 rosetta_stepper(rosetta_system);
+	diffysynth::stepper::runge_kutta_4 rosetta_stepper;
+	rosetta_stepper.system_set(&rosetta_system);
 
 	// set initial state
 
 	// integrate
+	rosetta_stepper.prepare();
 	for (int t = 0; t <= 10; t++) {
-		rosetta_steper.integrate(static_cast<type::diff>(t), static_cast<type::diff>(t + 1), static_cast<type::diff>(0.1));
+		rosetta_stepper.integrate();
 	}
+	rosetta_stepper.release();
 
 	return 0;
 };
