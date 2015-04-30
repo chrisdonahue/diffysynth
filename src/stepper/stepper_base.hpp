@@ -6,14 +6,17 @@
 
 #include "../diff_eq_system.hpp"
 
+#define step_signature type::time t, type::time dt
+#define step_arguments t, dt
+
 namespace diffysynth { namespace stepper {
 	class base {
 	public:
 		void system_set(const diff_eq_system* _system);
 
-		void prepare();
-		void release();
-		virtual void integrate() = 0;
+		virtual void prepare();
+		virtual void release();
+		virtual void step(step_signature) = 0;
 
 		type::diff* solutions_get(type::id identifier = 0);
 		type::diff* parameters_get(type::id identifier = 0);
@@ -26,10 +29,11 @@ namespace diffysynth { namespace stepper {
 		type::boolean prepared;
 		type::diff* solutions;
 		type::diff* parameters;
-		type::diff* derivatives;
 
-	private:
 		const diff_eq_system* system;
+		type::id diff_eqs_num;
+		type::id parameters_num;
+	private:
 	};
 }}
 

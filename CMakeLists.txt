@@ -111,6 +111,7 @@ set(HEADERS
 	src/primitive/estimate.hpp
 	src/primitive/parameter.hpp
 	src/primitive/square_root.hpp
+	src/primitive/time.hpp
 	src/stepper/stepper_base.hpp
 	src/stepper/runge_kutta_4.hpp
 )
@@ -124,6 +125,7 @@ set(SOURCES
 	src/primitive/estimate.cpp
 	src/primitive/parameter.cpp
 	src/primitive/square_root.cpp
+	src/primitive/time.cpp
 	src/stepper/stepper_base.cpp
 	src/stepper/runge_kutta_4.cpp
 )

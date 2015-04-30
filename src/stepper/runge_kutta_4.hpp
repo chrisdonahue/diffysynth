@@ -8,9 +8,12 @@ namespace diffysynth { namespace stepper {
 	public:
 		runge_kutta_4();
 
-		void integrate() override;
+		void prepare() override;
+		void release() override;
+		void step(step_signature) override;
 	protected:
 	private:
+		type::diff* buffer;
 	};
 }}
 

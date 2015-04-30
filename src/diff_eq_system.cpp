@@ -60,6 +60,6 @@ void diff_eq_system::evaluate(evaluate_signature) const {
 #endif
 
 	for (type::id identifier = 0; identifier < diff_eqs_num; identifier++) {
-		type::diff diff_eq_result = diff_eqs[identifier]->evaluate(evaluate_arguments);
+		derivatives[identifier] = diff_eqs[identifier]->evaluate(evaluate_arguments);
 	}
 };

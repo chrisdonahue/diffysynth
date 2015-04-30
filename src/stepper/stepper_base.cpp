@@ -5,17 +5,19 @@ using namespace diffysynth;
 stepper::base::base() :
 	prepared(false),
 	solutions(nullptr),
-	derivatives(nullptr),
 	parameters(nullptr),
-	system(nullptr)
+	system(nullptr),
+	diff_eqs_num(0),
+	parameters_num(0)
 {};
 
 stepper::base::base(const diff_eq_system* _system) :
 	prepared(false),
 	solutions(nullptr),
-	derivatives(nullptr),
 	parameters(nullptr),
-	system(_system)
+	system(_system),
+	diff_eqs_num(system->diff_eqs_num_get()),
+	parameters_num(system->parameters_num_get())
 {};
 
 stepper::base::~base() {
@@ -37,13 +39,12 @@ void stepper::base::prepare() {
 	ensure(!prepared);
 #endif
 
-	type::id diff_eqs_num = system->diff_eqs_num_get();
+	diff_eqs_num = system->diff_eqs_num_get();
 	if (diff_eqs_num > 0) {
 		solutions = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * diff_eqs_num));
-		derivatives = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * diff_eqs_num));
 	}
 
-	type::id parameters_num = system->parameters_num_get();
+	parameters_num = system->parameters_num_get();
 	if (parameters_num > 0) {
 		parameters = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * parameters_num));;
 	}
@@ -56,13 +57,20 @@ void stepper::base::release() {
 	ensure(prepared);
 #endif
 
-	free(solutions);
-	free(parameters);
-	free(derivatives);
+	if (solutions != nullptr) {
+		free(solutions);
+		solutions = nullptr;
+	}
+
+	if (parameters != nullptr) {
+		free(parameters);
+		parameters = nullptr;
+	}
+
 	prepared = false;
 };
 
-void stepper::base::integrate() {
+void stepper::base::step(step_signature) {
 #ifdef DIFFYSYNTH_DEBUG_API
 	ensure(prepared);
 #endif
