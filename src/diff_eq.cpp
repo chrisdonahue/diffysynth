@@ -14,6 +14,17 @@ diff_eq::diff_eq(type::string root_string) :
 	root(nullptr)
 {};
 
+diff_eq::diff_eq(const diff_eq& other) :
+	condition_initial(other.condition_initial)
+{
+	if (other.root == nullptr) {
+		root = nullptr;
+	}
+	else {
+		root = new primitive::base(const_cast<primitive::base&>(*root));
+	}
+};
+
 void diff_eq::reset() {
 };
 

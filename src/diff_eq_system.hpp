@@ -15,6 +15,7 @@ namespace diffysynth {
 	class diff_eq_system {
 	public:
 		diff_eq_system(type::id _diff_eqs_num, type::id _parameters_num);
+		diff_eq_system(const diff_eq_system& other);
 
 		type::id diff_eqs_num_get() const;
 		type::id parameters_num_get() const;

@@ -20,6 +20,9 @@ int main(int argc, char* argv[]) {
 	// create diff_eq_system
 	diff_eq_system rosetta_system(1, 0);
 
+	// copy system
+	diff_eq_system rosetta_system_copy(const_cast<diff_eq_system&>(rosetta_system));
+
 	// create stepper
 	stepper::runge_kutta_4 rosetta_stepper;
 	rosetta_stepper.system_set(&rosetta_system);

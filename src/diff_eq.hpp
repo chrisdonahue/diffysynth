@@ -13,6 +13,7 @@ namespace diffysynth {
 		diff_eq();
 		diff_eq(type::diff condition_initial, primitive::base* root);
 		diff_eq(type::string root_string);
+		diff_eq(const diff_eq& other);
 
 		void reset();
 		void condition_initial_set(type::diff _condition_initial);

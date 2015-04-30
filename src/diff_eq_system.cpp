@@ -12,6 +12,22 @@ diff_eq_system::diff_eq_system(type::id _diff_eqs_num, type::id _parameters_num)
 	}
 };
 
+diff_eq_system::diff_eq_system(const diff_eq_system& other) :
+	diff_eqs_num(other.diff_eqs_num),
+	diff_eqs(diff_eqs_num),
+	parameters_num(other.parameters_num)
+{
+	for (type::id identifier = 0; identifier < diff_eqs_num; identifier++) {
+		diff_eq* other_diff_eq = other.diff_eqs[identifier];
+		if (other_diff_eq == nullptr) {
+			diff_eqs[identifier] = nullptr;
+		}
+		else {
+			diff_eqs[identifier] = new diff_eq(const_cast<diff_eq&>(*other_diff_eq));
+		}
+	}
+};
+
 type::id diff_eq_system::diff_eqs_num_get() const {
 	return diff_eqs_num;
 };

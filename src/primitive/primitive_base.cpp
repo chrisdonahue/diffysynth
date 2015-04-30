@@ -3,11 +3,28 @@
 using namespace diffysynth;
 
 primitive::base::base(type::string _symbol) :
-	symbol(_symbol),
-	children(0)
+	symbol(_symbol)
 {};
 
-type::disc_32_u primitive::base::children_num_get() {
+primitive::base::base(const base& other) :
+	symbol(other.symbol)
+{
+	auto it = other.children.begin();
+	while (it != other.children.end()) {
+		base* other_child = it->second;
+
+		if (other_child == nullptr) {
+			children[it->first] = nullptr;
+		}
+		else {
+			children[it->first] = new base(const_cast<base&>(*other_child));
+		}
+		
+		it++;
+	}
+};
+
+type::id primitive::base::children_num_get() {
 	return children.size();
 };
 
