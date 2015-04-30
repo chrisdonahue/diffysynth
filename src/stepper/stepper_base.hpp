@@ -4,12 +4,12 @@
 #include "../exception.hpp"
 #include "../type.hpp"
 
-#include "../system.hpp"
+#include "../diff_eq_system.hpp"
 
 namespace diffysynth { namespace stepper {
 	class base {
 	public:
-		void system_set(const system* __system);
+		void system_set(const diff_eq_system* _system);
 
 		void prepare();
 		void release();
@@ -19,7 +19,7 @@ namespace diffysynth { namespace stepper {
 
 	protected:
 		base();
-		base(const system* __system);
+		base(const diff_eq_system* _system);
 		~base();
 
 		type::boolean prepared;
@@ -28,7 +28,7 @@ namespace diffysynth { namespace stepper {
 		type::diff* derivatives;
 
 	private:
-		const system* _system;
+		const diff_eq_system* system;
 	};
 }}
 

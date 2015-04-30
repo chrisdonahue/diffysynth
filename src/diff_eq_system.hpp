@@ -12,14 +12,14 @@
 #include "diff_eq.hpp"
 
 namespace diffysynth {
-	class system {
+	class diff_eq_system {
 	public:
-		system(type::id _diff_eqs_num, type::id _parameters_num);
+		diff_eq_system(type::id _diff_eqs_num, type::id _parameters_num);
 
 		type::id parameters_num_get() const;
 		type::id diff_eqs_num_get() const;
 
-		void system::diff_eq_set(type::id identifier, diff_eq* instance);
+		void diff_eq_system::diff_eq_set(type::id identifier, diff_eq* instance);
 		diff_eq* diff_eq_get(type::id identifier);
 
 		void evaluate(evaluate_signature) const;

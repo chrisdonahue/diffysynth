@@ -2,18 +2,26 @@
 
 using namespace diffysynth;
 
-primitive::multiply::multiply() :
-	base("*")
+primitive::multiply::multiply(type::id _children_num) :
+	base("*"),
+	children_num(_children_num)
 {
-	child_register("multiplicand_1");
-	child_register("multiplicand_2");
+#ifdef DIFFYSYNTH_DEBUG_API
+	ensure(children_num > 0);
+#endif
+
+	for (type::id child = 0; child < children_num; child++) {
+		child_register(child);
+	}
 };
 
 type::diff primitive::multiply::evaluate(evaluate_signature) {
 	base::evaluate(evaluate_arguments);
 
-	type::diff multiplicand_1_result = child_get("multiplicand_1")->evaluate(evaluate_arguments);
-	type::diff multiplicand_2_result = child_get("multiplicand_2")->evaluate(evaluate_arguments);
+	type::diff result = child_get(0)->evaluate(evaluate_arguments);
+	for (type::id child = 1; child < children_num; child++) {
+		result *= child_get(child)->evaluate(evaluate_arguments);
+	}
 
-	return multiplicand_1_result * multiplicand_2_result;
+	return result;
 };

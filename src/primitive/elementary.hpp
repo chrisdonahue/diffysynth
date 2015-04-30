@@ -6,9 +6,12 @@
 namespace diffysynth { namespace primitive {
 	class multiply : public base {
 	public:
-		multiply();
+		multiply(type::id _children_num);
 
 		type::diff evaluate(evaluate_signature) override;
+
+		type::id children_num;
+	private:
 	};
 }}
 

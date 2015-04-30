@@ -10,7 +10,7 @@
 #include "primitive/parameter.hpp"
 #include "primitive/square_root.hpp"
 #include "diff_eq.hpp"
-#include "system.hpp"
+#include "diff_eq_system.hpp"
 #include "stepper/runge_kutta_4.hpp"
 
 #endif

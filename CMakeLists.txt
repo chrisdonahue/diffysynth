@@ -105,7 +105,7 @@ set(HEADERS
 	src/type.hpp
 	src/value.hpp
 	src/diff_eq.hpp
-	src/system.hpp
+	src/diff_eq_system.hpp
 	src/primitive/primitive_base.hpp
 	src/primitive/elementary.hpp
 	src/primitive/estimate.hpp
@@ -118,7 +118,7 @@ set(HEADERS
 set(SOURCES
 	src/exception.cpp
 	src/diff_eq.cpp
-	src/system.cpp
+	src/diff_eq_system.cpp
 	src/primitive/primitive_base.cpp
 	src/primitive/elementary.cpp
 	src/primitive/estimate.cpp

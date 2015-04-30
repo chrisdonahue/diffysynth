@@ -11,6 +11,11 @@ namespace diffysynth { namespace primitive {
 		square_root();
 
 		type::diff evaluate(evaluate_signature) override;
+
+		enum children_ids {
+			argument = 0,
+			children_num
+		};
 	};
 }}
 

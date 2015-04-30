@@ -17,8 +17,8 @@ namespace diffysynth { namespace primitive {
 	class base {
 	public:
 		type::disc_32_u children_num_get();
-		base* child_get(type::string child_specifier);
-		void child_set(type::string child_specifier, base* child);
+		base* child_get(type::id child_specifier);
+		void child_set(type::id child_specifier, base* child);
 		type::boolean ready();
 
 		virtual type::diff evaluate(evaluate_signature) = 0;
@@ -28,11 +28,11 @@ namespace diffysynth { namespace primitive {
 	protected:
 		base(type::string _symbol);
 
-		void child_register(type::string child_specifier);
+		void child_register(type::id identifier);
 
 	private:
 		type::string symbol;
-		std::unordered_map<type::string, base*> children;
+		std::unordered_map<type::id, base*> children;
 	};
 }}
 

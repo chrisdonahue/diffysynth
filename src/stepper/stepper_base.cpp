@@ -7,15 +7,15 @@ stepper::base::base() :
 	parameters(nullptr),
 	solutions(nullptr),
 	derivatives(nullptr),
-	_system(nullptr)
+	system(nullptr)
 {};
 
-stepper::base::base(const diffysynth::system* __system) :
+stepper::base::base(const diff_eq_system* _system) :
 	prepared(false),
 	parameters(nullptr),
 	solutions(nullptr),
 	derivatives(nullptr),
-	_system(__system)
+	system(_system)
 {};
 
 stepper::base::~base() {
@@ -24,12 +24,12 @@ stepper::base::~base() {
 #endif
 };
 
-void stepper::base::system_set(const diffysynth::system* __system) {
+void stepper::base::system_set(const diff_eq_system* _system) {
 #ifdef DIFFYSYNTH_DEBUG_API
 	ensure(!prepared);
 #endif
 
-	_system = __system;
+	system = _system;
 };
 
 void stepper::base::prepare() {
@@ -37,9 +37,9 @@ void stepper::base::prepare() {
 	ensure(!prepared);
 #endif
 
-	parameters = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * _system->parameters_num_get()));;
-	solutions = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * _system->diff_eqs_num_get()));
-	derivatives = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * _system->diff_eqs_num_get()));
+	parameters = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * system->parameters_num_get()));;
+	solutions = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * system->diff_eqs_num_get()));
+	derivatives = reinterpret_cast<type::diff*>(malloc(sizeof(type::diff) * system->diff_eqs_num_get()));
 	prepared = true;
 };
 

@@ -11,7 +11,7 @@ type::disc_32_u primitive::base::children_num_get() {
 	return children.size();
 };
 
-primitive::base* primitive::base::child_get(type::string child_specifier) {
+primitive::base* primitive::base::child_get(type::id child_specifier) {
 	auto it = children.find(child_specifier);
 #ifdef DIFFYSYNTH_DEBUG_API
 	diffysynth::ensure(it != children.end());
@@ -20,7 +20,7 @@ primitive::base* primitive::base::child_get(type::string child_specifier) {
 	return it->second;
 };
 
-void primitive::base::child_set(type::string child_specifier, base* child) {
+void primitive::base::child_set(type::id child_specifier, base* child) {
 #ifdef DIFFYSYNTH_DEBUG_API
 	auto it = children.find(child_specifier);
 	diffysynth::ensure(it != children.end());
@@ -53,8 +53,8 @@ type::diff primitive::base::evaluate(evaluate_signature) {
 	return value::diff_zero;
 };
 
-void primitive::base::child_register(type::string child_specifier) {
-	children.insert(std::make_pair(child_specifier, nullptr));
+void primitive::base::child_register(type::id child_specifier) {
+	children[child_specifier] = nullptr;
 };
 
 void primitive::base::as_string(std::stringstream& ss) {
