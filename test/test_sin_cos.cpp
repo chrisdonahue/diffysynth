@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 
 	// connect sin primitives
 	sin_multiplier.child_set(0, &sin_scalar);
-	sin_multiplier.child_set(1, &sin_sin);
+	sin_multiplier.child_set(1, &sin_cos);
 	sin_multiplier.child_set(2, &sin_f_1);
 
 	// create sin differential equation
@@ -48,14 +48,14 @@ int main(int argc, char* argv[]) {
 
 	// set parameters
 	type::diff* parameters = sin_cos_stepper.parameters_get();
-	parameters[0] = 40.0;
+	parameters[0] = 440.0;
 
 	// integrate
 	type::time t = 0.0;
 	type::time t_prime = 10.0;
-	type::time dt = 0.1;
+	type::time dt = 1.0 / 44100.0;
 	type::diff solution = 1.0;
-	type::disc_32 steps_num = ceil((t_prime - t) / dt);
+	type::disc_32 steps_num = static_cast<type::disc_32>(ceil((t_prime - t) / dt));
 	for (type::disc_32 step = 0; step < steps_num; step++) {
 		sin_cos_stepper.step(t, dt);
 		t += dt;

@@ -2,12 +2,13 @@
 
 using namespace diffysynth;
 
-primitive::estimate::estimate() :
-	base("estimate")
+primitive::estimate::estimate(type::id _identifier) :
+	base("estimate"),
+	identifier(_identifier)
 {};
 
 type::diff primitive::estimate::evaluate(evaluate_signature) {
 	base::evaluate(evaluate_arguments);
 
-	return solutions[0];
+	return solutions[identifier];
 };

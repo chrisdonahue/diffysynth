@@ -6,9 +6,11 @@
 namespace diffysynth { namespace primitive {
 	class parameter : public base {
 	public:
-		parameter();
+		parameter(type::id _identifer);
 
 		type::diff evaluate(evaluate_signature) override;
+	private:
+		type::id identifier;
 	};
 }}
 

@@ -2,13 +2,13 @@
 
 using namespace diffysynth;
 
-primitive::parameter::parameter() :
-base("parameter")
+primitive::parameter::parameter(type::id _identifier) :
+	base("parameter"),
+	identifier(_identifier)
 {};
 
 type::diff primitive::parameter::evaluate(evaluate_signature) {
 	base::evaluate(evaluate_arguments);
 
-	// TODO: fix this
-	return t;
+	return parameters[identifier];
 };

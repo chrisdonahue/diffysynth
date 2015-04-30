@@ -11,7 +11,7 @@ namespace diffysynth {
 	class diff_eq {
 	public:
 		diff_eq();
-		diff_eq(type::diff condition_initial, primitive::base* root);
+		diff_eq(primitive::base* root);
 		diff_eq(type::string root_string);
 		diff_eq(const diff_eq& other);
 
@@ -21,7 +21,7 @@ namespace diffysynth {
 		type::diff evaluate(evaluate_signature);
 
 	private:
-		type::diff condition_initial;
+		//type::diff condition_initial;
 		primitive::base* root;
 	};
 }

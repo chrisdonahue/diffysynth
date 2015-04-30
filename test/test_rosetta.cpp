@@ -5,7 +5,7 @@ using namespace diffysynth;
 int main(int argc, char* argv[]) {
 	// create primitives
 	primitive::time _t;
-	primitive::estimate y;
+	primitive::estimate y(0);
 	primitive::square_root sqrt_y;
 	primitive::multiply t_times_sqrt_y(2);
 
@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
 	t_times_sqrt_y.child_set(1, &sqrt_y);
 
 	// create differential equation
-	diff_eq y_t(static_cast<type::diff>(0.0), &t_times_sqrt_y);
+	diff_eq y_t(&t_times_sqrt_y);
 
 	// create diff_eq_system
 	diff_eq_system rosetta_system(1, 0);
@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
 	type::diff solution = 1.0;
 	type::diff solution_exact = 1.0;
 	type::diff error_relative = 0.0;
-	type::disc_32 steps_num = ceil((t_prime - t) / dt);
+	type::disc_32 steps_num = static_cast<type::disc_32>(ceil((t_prime - t) / dt));
 	for (type::disc_32 step = 0; step < steps_num; step++) {
 		rosetta_stepper.step(t, dt);
 		t += dt;

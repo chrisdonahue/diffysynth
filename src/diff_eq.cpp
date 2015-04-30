@@ -6,7 +6,7 @@ diff_eq::diff_eq() :
 	root(nullptr)
 {};
 
-diff_eq::diff_eq(type::diff value_initial, primitive::base* root) :
+diff_eq::diff_eq(primitive::base* root) :
 	root(root)
 {};
 
@@ -14,8 +14,8 @@ diff_eq::diff_eq(type::string root_string) :
 	root(nullptr)
 {};
 
-diff_eq::diff_eq(const diff_eq& other) :
-	condition_initial(other.condition_initial)
+diff_eq::diff_eq(const diff_eq& other) 
+	//:condition_initial(other.condition_initial)
 {
 	if (other.root == nullptr) {
 		root = nullptr;
@@ -29,7 +29,7 @@ void diff_eq::reset() {
 };
 
 void diff_eq::condition_initial_set(type::diff _condition_initial) {
-	condition_initial = _condition_initial;
+	//condition_initial = _condition_initial;
 };
 
 type::diff diff_eq::evaluate(evaluate_signature) {
