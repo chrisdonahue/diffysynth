@@ -5,7 +5,7 @@
 
 #include "../type.hpp"
 
-#include "../primitive/primitive_base.hpp"
+#include "../system.hpp"
 
 namespace diffysynth { namespace stepper {
 	class base {
@@ -15,9 +15,8 @@ namespace diffysynth { namespace stepper {
 		protected:
 		private:
 		};
-
-		base();
 	protected:
+		base(const system& _system);
 	private:
 	};
 }}

@@ -17,14 +17,17 @@ int main(int argc, char* argv[]) {
 	diffysynth::diff_eq y_t(static_cast<diffysynth::type::diff>(0.0), &t_times_sqrt_y);
 
 	// create system
-	diffysynth::system<1> rosetta;
+	diffysynth::system rosetta_system(1, 0);
 
-	// connect system
-	rosetta.diff_eq_set(0, &y_t);
+	// create stepper
+	diffysynth::stepper::runge_kutta_4 rosetta_stepper(rosetta_system);
+
+	// set initial state
 
 	// integrate
-	odeint_state_type state = {1.0};
-	boost::numeric::odeint::integrate(evaluate, state, 0.0, 10.0, 0.1);
+	for (int t = 0; t <= 10; t++) {
+		rosetta_steper.integrate(static_cast<type::diff>(t), static_cast<type::diff>(t + 1), static_cast<type::diff>(0.1));
+	}
 
 	return 0;
 };
