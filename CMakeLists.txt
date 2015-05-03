@@ -118,6 +118,36 @@ set(HEADERS
 	src/gp/population.hpp
 	src/gp/evaluator.hpp
 )
+
+set(HEADERS_
+	src/diffysynth.hpp
+	src/define.hpp
+	src/exception.hpp
+	src/type.hpp
+	src/value.hpp
+	src/diff_eq.hpp
+	src/diff_eq_system.hpp
+)
+
+set(HEADERS_PRIMITIVE
+	src/primitive/primitive_base.hpp
+	src/primitive/constant.hpp
+	src/primitive/elementary.hpp
+	src/primitive/estimate.hpp
+	src/primitive/parameter.hpp
+	src/primitive/square_root.hpp
+	src/primitive/time.hpp
+)
+
+set(HEADERS_STEPPER
+	src/stepper/stepper_base.hpp
+	src/stepper/runge_kutta_4.hpp
+)
+
+set(HEADERS_GP
+	src/gp/population.hpp
+	src/gp/evaluator.hpp
+)
 	
 set(SOURCES
 	src/exception.cpp
@@ -136,6 +166,32 @@ set(SOURCES
 	src/gp/evaluator.cpp
 )
 
+set(SOURCES_
+	src/exception.cpp
+	src/diff_eq.cpp
+	src/diff_eq_system.cpp
+)
+
+set(SOURCES_PRIMITIVE
+	src/primitive/primitive_base.cpp
+	src/primitive/constant.cpp
+	src/primitive/elementary.cpp
+	src/primitive/estimate.cpp
+	src/primitive/parameter.cpp
+	src/primitive/square_root.cpp
+	src/primitive/time.cpp
+)
+
+set(SOURCES_STEPPER
+	src/stepper/stepper_base.cpp
+	src/stepper/runge_kutta_4.cpp
+)
+
+set(SOURCES_GP
+	src/gp/population.cpp
+	src/gp/evaluator.cpp
+)
+
 if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     include (CheckCCompilerFlag)
     CHECK_C_COMPILER_FLAG(-fvisibility=hidden HAVE_VISIBILITY)
@@ -149,11 +205,14 @@ if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     endif(UNIX)
 endif ()
 
-source_group("Sources" FILES ${SOURCES})
-
-#
-# Create the lib.
-#
+source_group("src" FILES ${SOURCES_})
+source_group("src\\primitive" FILES ${SOURCES_PRIMITIVE})
+source_group("src\\stepper" FILES ${SOURCES_STEPPER})
+source_group("src\\gp" FILES ${SOURCES_GP})
+source_group("inc" FILES ${HEADERS_})
+source_group("inc\\primitive" FILES ${HEADERS_PRIMITIVE})
+source_group("inc\\stepper" FILES ${HEADERS_STEPPER})
+source_group("inc\\gp" FILES ${HEADERS_GP})
 add_library(diffysynth STATIC
 			${HEADERS}
 			${SOURCES})
