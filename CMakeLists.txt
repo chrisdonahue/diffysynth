@@ -106,6 +106,7 @@ set(HEADERS
 	src/value.hpp
 	src/diff_eq.hpp
 	src/diff_eq_system.hpp
+	src/rng.hpp
 	src/primitive/primitive_base.hpp
 	src/primitive/constant.hpp
 	src/primitive/elementary.hpp
@@ -127,6 +128,7 @@ set(HEADERS_
 	src/value.hpp
 	src/diff_eq.hpp
 	src/diff_eq_system.hpp
+	src/rng.hpp
 )
 
 set(HEADERS_PRIMITIVE
@@ -153,6 +155,7 @@ set(SOURCES
 	src/exception.cpp
 	src/diff_eq.cpp
 	src/diff_eq_system.cpp
+	src/rng.cpp
 	src/primitive/primitive_base.cpp
 	src/primitive/constant.cpp
 	src/primitive/elementary.cpp
@@ -170,6 +173,7 @@ set(SOURCES_
 	src/exception.cpp
 	src/diff_eq.cpp
 	src/diff_eq_system.cpp
+	src/rng.cpp
 )
 
 set(SOURCES_PRIMITIVE

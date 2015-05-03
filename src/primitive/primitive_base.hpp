@@ -10,6 +10,8 @@
 #include "../type.hpp"
 #include "../value.hpp"
 
+#include "../rng.hpp"
+
 #define evaluate_signature const type::diff* solutions, type::diff* parameters, type::time t, type::diff* derivatives
 #define evaluate_arguments solutions, parameters, t, derivatives
 
@@ -24,15 +26,18 @@ namespace diffysynth { namespace primitive {
 		void child_set(type::id child_specifier, base* child);
 		type::boolean ready();
 
+		virtual base* copy_get() = 0;
+		virtual void randomize(rng& engine);
 		virtual type::diff evaluate(evaluate_signature);
 
-		void as_string(std::stringstream& ss);
+		void to_string_stream(std::stringstream& ss);
 
 	protected:
 		void child_register(type::id identifier);
 
+		virtual void as_symbol(std::stringstream& ss) = 0;
+
 	private:
-		type::string symbol;
 		std::unordered_map<type::id, base*> children;
 	};
 }}

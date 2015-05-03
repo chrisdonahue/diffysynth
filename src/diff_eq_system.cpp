@@ -63,3 +63,21 @@ void diff_eq_system::evaluate(evaluate_signature) const {
 		derivatives[identifier] = diff_eqs[identifier]->evaluate(evaluate_arguments);
 	}
 };
+
+void diff_eq_system::as_string(std::stringstream& ss) {
+#ifdef DIFFYSYNTH_DEBUG_API
+	for (type::id identifier = 0; identifier < diff_eqs_num; identifier++) {
+		ensure(diff_eqs[identifier] != nullptr);
+	}
+#endif
+
+	ss << "{";
+	for (type::id identifier = 0; identifier < diff_eqs_num; identifier++) {
+		ss << identifier << ": ";
+		diff_eqs[identifier]->as_string(ss);
+		if (identifier != diff_eqs_num - 1) {
+			ss << ", ";
+		}
+	}
+	ss << "}";
+};

@@ -1,6 +1,8 @@
 #ifndef DIFFYSYNTH_DIFF_EQ
 #define DIFFYSYNTH_DIFF_EQ
 
+#include <sstream>
+
 #include "define.hpp"
 #include "type.hpp"
 #include "value.hpp"
@@ -19,6 +21,8 @@ namespace diffysynth {
 		void condition_initial_set(type::diff _condition_initial);
 
 		type::diff evaluate(evaluate_signature);
+
+		void as_string(std::stringstream& ss);
 
 	private:
 		//type::diff condition_initial;

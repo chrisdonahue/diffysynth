@@ -2,8 +2,8 @@
 #define DIFFYSYNTH_SYSTEM
 
 #include <array>
-
 #include <map>
+#include <sstream>
 
 #include "define.hpp"
 #include "type.hpp"
@@ -30,6 +30,8 @@ namespace diffysynth {
 		static diff_eq_system* grow_recursive(type::disc_32_u depth_current, type::disc_32_u m);
 		static diff_eq_system* grow(type::disc_32_u m);
 		static diff_eq_system* equation_create();
+
+		void as_string(std::stringstream& ss);
 
 	private:
 		type::id diff_eqs_num;

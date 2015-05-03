@@ -1,5 +1,7 @@
 #include "diffysynth.hpp"
 
+#include <sstream>
+
 using namespace diffysynth;
 
 int main(int argc, char* argv[]) {
@@ -63,6 +65,10 @@ int main(int argc, char* argv[]) {
 		cos_solution = solutions[0];
 		sin_solution = solutions[1];
 	}
+
+	std::stringstream sin_cos_ss;
+	sin_cos_system.as_string(sin_cos_ss);
+	std::string sin_cos_as_string = sin_cos_ss.str();
 
 	// release
 	sin_cos_stepper.release();

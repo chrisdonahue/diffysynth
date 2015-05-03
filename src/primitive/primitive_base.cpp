@@ -74,8 +74,9 @@ void primitive::base::child_register(type::id child_specifier) {
 	children[child_specifier] = nullptr;
 };
 
-void primitive::base::as_string(std::stringstream& ss) {
-	ss << "(" << symbol;
+void primitive::base::to_string_stream(std::stringstream& ss) {
+	ss << "(";
+	as_symbol(ss);
 	auto it = children.begin();
 	while (it != children.end()) {
 		ss << " " << it->first << ": ";
@@ -83,7 +84,7 @@ void primitive::base::as_string(std::stringstream& ss) {
 			ss << "(null)";
 		}
 		else {
-			it->second->as_string(ss);
+			it->second->to_string_stream(ss);
 		}
 		it++;
 	}

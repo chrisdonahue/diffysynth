@@ -39,3 +39,11 @@ type::diff diff_eq::evaluate(evaluate_signature) {
 
 	return root->evaluate(evaluate_arguments);
 };
+
+void diff_eq::as_string(std::stringstream& ss) {
+#ifdef DIFFYSYNTH_DEBUG_API
+	ensure(root != nullptr);
+#endif
+
+	root->as_string(ss);
+};
