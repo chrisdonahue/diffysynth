@@ -13,6 +13,7 @@
 #include "primitive/time.hpp"
 #include "diff_eq.hpp"
 #include "diff_eq_system.hpp"
+#include "rng.hpp"
 #include "stepper/runge_kutta_4.hpp"
 
 #endif

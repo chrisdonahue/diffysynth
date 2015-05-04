@@ -11,6 +11,8 @@ namespace diffysynth {
 	class rng {
 	public:
 		rng();
+
+		// TODO
 	private:
 	};
 }
