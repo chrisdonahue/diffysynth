@@ -2,9 +2,10 @@
 
 using namespace diffysynth;
 
-primitive::base::base(type::string _symbol)
+primitive::base::base()
 {};
 
+/*
 primitive::base::base(const base& other)
 {
 	auto it = other.children.begin();
@@ -21,6 +22,7 @@ primitive::base::base(const base& other)
 		it++;
 	}
 };
+*/
 
 type::id primitive::base::children_num_get() {
 	return children.size();
@@ -72,10 +74,14 @@ void primitive::base::child_register(type::id child_specifier) {
 	children[child_specifier] = nullptr;
 };
 
+void primitive::base::randomize(rng& engine) {};
+
 // TODO
 primitive::base* primitive::base::copy_get() {
 	return nullptr;
 };
+
+void primitive::base::as_symbol(std::stringstream& ss) {};
 
 void primitive::base::to_string_stream(std::stringstream& ss) {
 	ss << "(";

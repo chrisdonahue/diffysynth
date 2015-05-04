@@ -12,6 +12,7 @@ diff_eq_system::diff_eq_system(type::id _diff_eqs_num, type::id _parameters_num)
 	}
 };
 
+/*
 diff_eq_system::diff_eq_system(const diff_eq_system& other) :
 	diff_eqs_num(other.diff_eqs_num),
 	diff_eqs(diff_eqs_num),
@@ -27,6 +28,7 @@ diff_eq_system::diff_eq_system(const diff_eq_system& other) :
 		}
 	}
 };
+*/
 
 type::id diff_eq_system::diff_eqs_num_get() const {
 	return diff_eqs_num;

@@ -18,8 +18,7 @@
 namespace diffysynth { namespace primitive {
 	class base {
 	public:
-		base(type::string _symbol);
-		base(const base& other);
+		base();
 
 		type::id children_num_get();
 		base* child_get(type::id child_specifier);
@@ -36,8 +35,7 @@ namespace diffysynth { namespace primitive {
 	protected:
 		void child_register(type::id identifier);
 
-		// TODO pure virtual
-		virtual void as_symbol(std::stringstream& ss);
+		virtual void as_symbol(std::stringstream& ss) = 0;
 
 	private:
 		std::unordered_map<type::id, base*> children;

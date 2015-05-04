@@ -3,7 +3,7 @@
 using namespace diffysynth;
 
 primitive::constant::constant(type::diff _value) :
-	base("constant"),
+	base(),
 	value(_value)
 {};
 
@@ -13,3 +13,10 @@ type::diff primitive::constant::evaluate(evaluate_signature) {
 	return value;
 };
 
+primitive::base* primitive::constant::copy_get() {
+	return new constant(value);
+};
+
+void primitive::constant::as_symbol(std::stringstream& ss) {
+	ss << value;
+};

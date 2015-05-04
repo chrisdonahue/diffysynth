@@ -3,7 +3,7 @@
 using namespace diffysynth;
 
 primitive::multiply::multiply(type::id _children_num) :
-	base("*"),
+	base(),
 	children_num(_children_num)
 {
 #ifdef DIFFYSYNTH_DEBUG_API
@@ -24,4 +24,13 @@ type::diff primitive::multiply::evaluate(evaluate_signature) {
 	}
 
 	return result;
+};
+
+// TODO
+primitive::base* primitive::multiply::copy_get() {
+	return nullptr;
+};
+
+void primitive::multiply::as_symbol(std::stringstream& ss) {
+	ss << "*";
 };
