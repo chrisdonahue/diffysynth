@@ -31,7 +31,8 @@ namespace diffysynth {
 		static diff_eq_system* grow(type::disc_32_u m);
 		static diff_eq_system* equation_create();
 
-		void as_string(std::stringstream& ss);
+		std::string to_string(type::disc_32_u precision);
+		void to_string_stream(std::stringstream& ss);
 
 	private:
 		type::id diff_eqs_num;

@@ -64,7 +64,14 @@ void diff_eq_system::evaluate(evaluate_signature) const {
 	}
 };
 
-void diff_eq_system::as_string(std::stringstream& ss) {
+std::string diff_eq_system::to_string(type::disc_32_u precision) {
+	std::stringstream ss;
+	ss.precision(precision);
+	to_string_stream(ss);
+	return ss.str();
+};
+
+void diff_eq_system::to_string_stream(std::stringstream& ss) {
 #ifdef DIFFYSYNTH_DEBUG_API
 	for (type::id identifier = 0; identifier < diff_eqs_num; identifier++) {
 		ensure(diff_eqs[identifier] != nullptr);
@@ -74,7 +81,7 @@ void diff_eq_system::as_string(std::stringstream& ss) {
 	ss << "{";
 	for (type::id identifier = 0; identifier < diff_eqs_num; identifier++) {
 		ss << identifier << ": ";
-		diff_eqs[identifier]->as_string(ss);
+		diff_eqs[identifier]->to_string_stream(ss);
 		if (identifier != diff_eqs_num - 1) {
 			ss << ", ";
 		}

@@ -2,12 +2,10 @@
 
 using namespace diffysynth;
 
-primitive::base::base(type::string _symbol) :
-	symbol(_symbol)
+primitive::base::base(type::string _symbol)
 {};
 
-primitive::base::base(const base& other) :
-	symbol(other.symbol)
+primitive::base::base(const base& other)
 {
 	auto it = other.children.begin();
 	while (it != other.children.end()) {
@@ -72,6 +70,11 @@ type::diff primitive::base::evaluate(evaluate_signature) {
 
 void primitive::base::child_register(type::id child_specifier) {
 	children[child_specifier] = nullptr;
+};
+
+// TODO
+primitive::base* primitive::base::copy_get() {
+	return nullptr;
 };
 
 void primitive::base::to_string_stream(std::stringstream& ss) {

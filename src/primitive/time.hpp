@@ -8,7 +8,11 @@ namespace diffysynth { namespace primitive {
 	public:
 		time();
 
+		base* copy_get() override;
 		type::diff evaluate(evaluate_signature) override;
+
+	protected:
+		void as_symbol(std::stringstream& ss) override;
 	};
 }}
 

@@ -22,7 +22,8 @@ namespace diffysynth {
 
 		type::diff evaluate(evaluate_signature);
 
-		void as_string(std::stringstream& ss);
+		std::string to_string(type::disc_32_u precision);
+		void to_string_stream(std::stringstream& ss);
 
 	private:
 		//type::diff condition_initial;

@@ -12,3 +12,4 @@ type::diff primitive::constant::evaluate(evaluate_signature) {
 
 	return value;
 };
+

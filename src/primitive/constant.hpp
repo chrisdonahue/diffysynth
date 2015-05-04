@@ -8,7 +8,12 @@ namespace diffysynth { namespace primitive {
 	public:
 		constant(type::diff _value);
 
+		base* copy_get() override;
 		type::diff evaluate(evaluate_signature) override;
+
+	protected:
+		void as_symbol(std::stringstream& ss) override;
+
 	private:
 		type::diff value;
 	};

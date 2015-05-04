@@ -26,7 +26,8 @@ namespace diffysynth { namespace primitive {
 		void child_set(type::id child_specifier, base* child);
 		type::boolean ready();
 
-		virtual base* copy_get() = 0;
+		// TODO pure virtual
+		virtual base* copy_get();
 		virtual void randomize(rng& engine);
 		virtual type::diff evaluate(evaluate_signature);
 
@@ -35,7 +36,8 @@ namespace diffysynth { namespace primitive {
 	protected:
 		void child_register(type::id identifier);
 
-		virtual void as_symbol(std::stringstream& ss) = 0;
+		// TODO pure virtual
+		virtual void as_symbol(std::stringstream& ss);
 
 	private:
 		std::unordered_map<type::id, base*> children;

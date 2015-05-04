@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	std::stringstream sin_cos_ss;
-	sin_cos_system.as_string(sin_cos_ss);
+	sin_cos_system.to_string_stream(sin_cos_ss);
 	std::string sin_cos_as_string = sin_cos_ss.str();
 
 	// release

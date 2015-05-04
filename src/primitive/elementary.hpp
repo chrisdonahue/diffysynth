@@ -8,9 +8,13 @@ namespace diffysynth { namespace primitive {
 	public:
 		multiply(type::id _children_num);
 
+		base* copy_get() override;
 		type::diff evaluate(evaluate_signature) override;
 
 		type::id children_num;
+	protected:
+		void as_symbol(std::stringstream& ss) override;
+
 	private:
 	};
 }}

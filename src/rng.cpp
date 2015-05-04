@@ -1,4 +1,4 @@
-#include "random.hpp"
+#include "rng.hpp"
 
 using namespace diffysynth;
 
