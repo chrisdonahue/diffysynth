@@ -4,16 +4,20 @@
 #include <random>
 
 #include "define.hpp"
+#include "exception.hpp"
 #include "type.hpp"
 #include "value.hpp"
 
 namespace diffysynth {
 	class rng {
 	public:
-		rng();
+		rng(type::disc_32 seed);
 
-		// TODO
+		template <typename T> T uniform(T min_inclusive, T max_inclusive);
+		type::cont_64 uniform_unit();
+
 	private:
+		std::default_random_engine engine;
 	};
 }
 
