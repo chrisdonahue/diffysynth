@@ -7,7 +7,7 @@ rng::rng(type::disc_32 seed) :
 {};
 
 template <typename T>
-T rng::uniform<T>(T min_inclusive, T max_inclusive) {
+T rng::uniform(T min_inclusive, T max_inclusive) {
 	throw exception::runtime("unknown type");
 };
 
