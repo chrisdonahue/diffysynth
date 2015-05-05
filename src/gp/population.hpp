@@ -70,7 +70,8 @@ namespace diffysynth { namespace gp {
 
 		private:
 			std::vector<primitive::base*> primitives;
-			std::vector<primitive::base*> primitives_leaf;
+			std::vector<primitive::base*> primitives_nonterminals;
+			std::vector<primitive::base*> primitives_terminals;
 		};
 
 	public:
@@ -81,19 +82,6 @@ namespace diffysynth { namespace gp {
 
 	private:
 		const population_state& state;
-
-		// initialization
-		primitive::base* full_recursive(type::disc_32_u depth, type::disc_32_u depth_current);
-		primitive::base* full(type::disc_32_u depth);
-		primitive::base* grow_recursive(type::disc_32_u depth_current, type::disc_32_u m);
-		primitive::base* grow(type::disc_32_u m);
-		primitive::base* equation_create();
-
-		// genetic operations
-		primitive::base* crossover(primitive::base* parent_zero, primitive::base* parent_one);
-		void mutate(primitive::base* parent);
-		void mutate_constants(primitive::base* parent);
-		primitive::base* create_new();
 	};
 }}
 
