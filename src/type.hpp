@@ -24,6 +24,7 @@ namespace diffysynth { namespace type {
 	typedef cont_64 time;
 	typedef std::string string;
 	typedef disc_32_u id;
+	typedef cont_64 fitness;
 }}
 
 #endif

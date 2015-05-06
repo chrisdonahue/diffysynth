@@ -19,10 +19,9 @@ namespace diffysynth { namespace gp {
 
 		diff_eq_system* system_get();
 		
-		typedef std::vector<primitive::base*>& primitives;
+		typedef const std::vector<primitive::base*>& primitives;
 
 		static void subtree_delete(primitive::base* current);
-
 		static void subtree_swap(primitive::base* subtree_old, primitive::base* subtree_new);
 
 		static primitive::base* full_recursive(rng& r, primitives_signature, type::disc_32_u depth_max, type::disc_32_u depth_current);
@@ -37,8 +36,10 @@ namespace diffysynth { namespace gp {
 	private:
 		diff_eq_system* system;
 
-		type::cont_64 novelty;
-		type::cont_64 fitness;
+		type::boolean novelty_valid;
+		type::fitness novelty;
+		type::boolean fitness_valid;
+		type::fitness fitness;
 	};
 }}
 

@@ -50,6 +50,9 @@ namespace diffysynth { namespace value {
 	const type::diff diff_zero					= static_cast<type::diff>(0.0);
 #elif DIFFYSYNTH_SAMPLE_32
 #endif
+
+	const type::fitness fitness_unassigned = static_cast<type::fitness>(-1.0);
+
 }}
 
 #endif
