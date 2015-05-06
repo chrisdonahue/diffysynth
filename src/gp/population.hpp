@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <map>
+#include <unordered_map>
 
 #include "../define.hpp"
 #include "../type.hpp"
@@ -10,6 +11,7 @@
 
 #include "../primitive/primitive_base.hpp"
 #include "evaluator.hpp"
+#include "individual.hpp"
 
 namespace diffysynth { namespace gp {
 	class population {
@@ -20,19 +22,22 @@ namespace diffysynth { namespace gp {
 
 			// methods
 			void primitive_add(primitive::base* _primitive);
-			primitive::base* primitive_random_get();
-			primitive::base* primitive_random_leaf_get();
+			const std::vector<primitive::base*>& primitives_all_get() const;
+			const std::vector<primitive::base*>& primitives_nonterminals_get() const;
+			const std::vector<primitive::base*>& primitives_terminals_get() const;
 
 			// population parameters
 			type::disc_32_u size;
 
 			// system parameters
-			type::disc_32_u system_size_min;
-			type::disc_32_u system_size_max;
+			type::disc_32_u diff_eqs_num;
+			type::disc_32_u parameters_num;
 
 			// eq parameters
+			type::boolean equation_height_restrict;
 			type::disc_32_u equation_height_min;
 			type::disc_32_u equation_height_max;
+			type::boolean equation_size_restrict;
 			type::disc_32_u equation_size_min;
 			type::disc_32_u equation_size_max;
 			type::cont_64 equation_full_proportion;
@@ -75,13 +80,18 @@ namespace diffysynth { namespace gp {
 		};
 
 	public:
-		population(const population_state& _state);
+		population(rng& _r, const population_state& _state);
+		~population();
 
 		void initialize();
 		void generation_next();
 
 	private:
+		rng& r;
 		const population_state& state;
+
+		typedef std::map<type::id, individual*> generation;
+		std::unordered_map<type::disc_32_u, generation* > generations;
 	};
 }}
 

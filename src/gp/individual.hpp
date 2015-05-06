@@ -8,8 +8,8 @@
 #include "../diff_eq_system.hpp"
 #include "../rng.hpp"
 
-#define primitives_signature primitives all, primitives terminal, primitives nonterminal
-#define primitives_arguments all, terminal, nonterminal
+#define primitives_signature primitives all, primitives nonterminal, primitives terminal
+#define primitives_arguments all, nonterminal, terminal
 
 namespace diffysynth { namespace gp {
 	class individual {
