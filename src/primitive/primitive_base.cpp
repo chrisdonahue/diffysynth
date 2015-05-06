@@ -3,7 +3,10 @@
 using namespace diffysynth;
 
 primitive::base::base() :
+	parent_valid(false),
 	parent(nullptr),
+	depth_valid(false),
+	depth(0),
 	children(0)
 {};
 
@@ -32,6 +35,16 @@ primitive::base* primitive::base::parent_get() {
 
 void primitive::base::parent_set(primitive::base* _parent) {
 	parent = _parent;
+	parent_valid = true;
+};
+
+type::disc_32_u primitive::base::depth_get() {
+	return depth;
+};
+
+void primitive::base::depth_set(type::disc_32_u _depth) {
+	depth = _depth;
+	depth_valid = true;
 };
 
 type::id primitive::base::children_num_get() {

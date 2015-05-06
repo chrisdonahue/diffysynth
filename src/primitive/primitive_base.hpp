@@ -23,6 +23,9 @@ namespace diffysynth { namespace primitive {
 		base* parent_get();
 		void parent_set(base* _parent);
 
+		type::disc_32_u depth_get();
+		void depth_set(type::disc_32_u _depth);
+
 		type::id children_num_get();
 		base* child_get(type::id child_specifier);
 		type::id child_id_get(base* child);
@@ -42,7 +45,10 @@ namespace diffysynth { namespace primitive {
 		virtual void as_symbol(std::stringstream& ss) = 0;
 
 	private:
+		type::boolean parent_valid;
 		base* parent;
+		type::boolean depth_valid;
+		type::disc_32_u depth;
 		std::unordered_map<type::id, base*> children;
 	};
 }}

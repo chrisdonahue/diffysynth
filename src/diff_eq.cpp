@@ -64,6 +64,7 @@ void diff_eq::trace() {
 
 void diff_eq::trace_recursive(primitive::base* parent, primitive::base* current, type::disc_32_u depth_current) {
 	current->parent_set(parent);
+	current->depth_set(depth_current);
 
 	if (height > depth_current) {
 		height = depth_current;
