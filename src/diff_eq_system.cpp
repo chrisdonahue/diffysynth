@@ -12,6 +12,11 @@ diff_eq_system::diff_eq_system(type::id _diff_eqs_num, type::id _parameters_num)
 	}
 };
 
+diff_eq_system* diff_eq_system::copy_get() {
+	// TODO
+	return nullptr;
+};
+
 /*
 diff_eq_system::diff_eq_system(const diff_eq_system& other) :
 	diff_eqs_num(other.diff_eqs_num),

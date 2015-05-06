@@ -3,7 +3,8 @@
 using namespace diffysynth;
 
 primitive::base::base() :
-	parent(nullptr)
+	parent(nullptr),
+	children(0)
 {};
 
 /*
@@ -25,6 +26,14 @@ primitive::base::base(const base& other)
 };
 */
 
+primitive::base* primitive::base::parent_get() {
+	return parent;
+};
+
+void primitive::base::parent_set(primitive::base* _parent) {
+	parent = _parent;
+};
+
 type::id primitive::base::children_num_get() {
 	return children.size();
 };
@@ -36,6 +45,21 @@ primitive::base* primitive::base::child_get(type::id child_specifier) {
 #endif
 
 	return it->second;
+};
+
+type::id primitive::base::child_id_get(base* child) {
+	auto it = children.begin();
+	while (it != children.end()) {
+		if (it->second == child) {
+			return it->first;
+		}
+	}
+
+#ifdef DIFFYSYNTH_DEBUG_API
+	throw exception::runtime("child not found in primitive");
+#endif
+
+	return 0;
 };
 
 void primitive::base::child_set(type::id child_specifier, base* child) {

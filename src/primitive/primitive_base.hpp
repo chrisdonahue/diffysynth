@@ -25,6 +25,7 @@ namespace diffysynth { namespace primitive {
 
 		type::id children_num_get();
 		base* child_get(type::id child_specifier);
+		type::id child_id_get(base* child);
 		void child_set(type::id child_specifier, base* child);
 		type::boolean ready();
 

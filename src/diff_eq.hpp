@@ -15,6 +15,8 @@ namespace diffysynth {
 		diff_eq();
 		diff_eq(primitive::base* root);
 		diff_eq(type::string root_string);
+
+		diff_eq* copy_get();
 		
 		primitive::base* root_get();
 
@@ -36,6 +38,7 @@ namespace diffysynth {
 		//type::diff condition_initial;
 		primitive::base* root;
 
+		type::boolean parent_valid;
 		type::boolean height_valid;
 		type::disc_32_u height;
 		type::boolean subtrees_valid;

@@ -26,6 +26,10 @@ diff_eq::diff_eq(type::string root_string) :
 	subtrees(0)
 {};
 
+diff_eq* diff_eq::copy_get() {
+	return nullptr;
+};
+
 primitive::base* diff_eq::root_get() {
 	return root;
 };
@@ -53,6 +57,9 @@ void diff_eq::trace() {
 	height = 0;
 	subtrees.clear();
 	trace_recursive(nullptr, root, 0);
+	parent_valid = true;
+	height_valid = true;
+	subtrees_valid = true;
 };
 
 void diff_eq::trace_recursive(primitive::base* parent, primitive::base* current, type::disc_32_u depth_current) {

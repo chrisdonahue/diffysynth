@@ -18,6 +18,12 @@ type::disc_32 rng::uniform(type::disc_32 min_inclusive, type::disc_32 max_inclus
 };
 
 template <>
+type::disc_32_u rng::uniform(type::disc_32_u min_inclusive, type::disc_32_u max_inclusive) {
+	std::uniform_int_distribution<type::disc_32_u> distribution(min_inclusive, max_inclusive);
+	return distribution(engine);
+};
+
+template <>
 type::cont_64 rng::uniform(type::cont_64 min_inclusive, type::cont_64 max_inclusive) {
 	std::uniform_real_distribution<type::cont_64> distribution(min_inclusive, max_inclusive);
 	return distribution(engine);
