@@ -2,7 +2,8 @@
 
 using namespace diffysynth;
 
-primitive::base::base()
+primitive::base::base() :
+	parent(nullptr)
 {};
 
 /*

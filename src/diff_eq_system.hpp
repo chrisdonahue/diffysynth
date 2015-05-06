@@ -24,12 +24,6 @@ namespace diffysynth {
 
 		void evaluate(evaluate_signature) const;
 
-		static diff_eq_system* full_recursive(type::disc_32_u depth, type::disc_32_u depth_current);
-		static diff_eq_system* full(type::disc_32_u depth);
-		static diff_eq_system* grow_recursive(type::disc_32_u depth_current, type::disc_32_u m);
-		static diff_eq_system* grow(type::disc_32_u m);
-		static diff_eq_system* equation_create();
-
 		std::string to_string(type::disc_32_u precision);
 		void to_string_stream(std::stringstream& ss);
 

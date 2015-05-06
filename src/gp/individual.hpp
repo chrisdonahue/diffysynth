@@ -14,22 +14,30 @@
 namespace diffysynth { namespace gp {
 	class individual {
 	public:
-		individual();
+		individual(diff_eq_system* _system);
+		~individual();
+
+		diff_eq_system* system_get();
 		
 		typedef std::vector<primitive::base*>& primitives;
 
-		static primitive::base* full_recursive(primitives_signature, type::disc_32_u depth_max, type::disc_32_u depth_current);
-		static individual* full(primitives_signature, type::disc_32_u height);
-		static primitive::base* grow_recursive(primitives_signature, type::disc_32_u depth_max, type::disc_32_u depth_current);
-		static individual* grow(primitives_signature, type::disc_32_u height_max);
+		static void delete_primitive_recursive(primitive::base* current);
 
-		static individual* crossover(individual* parent_zero, individual* parent_one);
-		static void mutate(individual* parent);
-		static void mutate_constants(individual* parent);
-		static individual* create_new();
+		static primitive::base* full_recursive(primitives_signature, type::disc_32_u depth_max, type::disc_32_u depth_current);
+		static individual* full(primitives_signature, type::disc_32_u diff_eqs_num, type::disc_32_u parameters_num, type::disc_32_u height);
+		static primitive::base* grow_recursive(primitives_signature, type::disc_32_u depth_max, type::disc_32_u depth_current);
+		static individual* grow(primitives_signature, type::disc_32_u diff_eqs_num, type::disc_32_u parameters_num, type::disc_32_u height_max);
+
+		static individual* crossover(rng& r, individual* parent_zero, individual* parent_one);
+		static void mutate(rng& r, individual* parent);
+		static void mutate_constants(rng& r, individual* parent);
+		static individual* create_new(rng& r);
 
 	private:
 		diff_eq_system* system;
+
+		type::cont_64 novelty;
+		type::cont_64 fitness;
 	};
 }}
 

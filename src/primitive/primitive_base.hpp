@@ -20,6 +20,9 @@ namespace diffysynth { namespace primitive {
 	public:
 		base();
 
+		base* parent_get();
+		void parent_set(base* _parent);
+
 		type::id children_num_get();
 		base* child_get(type::id child_specifier);
 		void child_set(type::id child_specifier, base* child);
@@ -38,6 +41,7 @@ namespace diffysynth { namespace primitive {
 		virtual void as_symbol(std::stringstream& ss) = 0;
 
 	private:
+		base* parent;
 		std::unordered_map<type::id, base*> children;
 	};
 }}
