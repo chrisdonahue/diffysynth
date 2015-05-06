@@ -35,11 +35,6 @@ namespace diffysynth { namespace gp {
 
 	private:
 		diff_eq_system* system;
-
-		type::boolean novelty_valid;
-		type::fitness novelty;
-		type::boolean fitness_valid;
-		type::fitness fitness;
 	};
 }}
 

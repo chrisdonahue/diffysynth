@@ -3,11 +3,7 @@
 using namespace diffysynth;
 
 gp::individual::individual(diff_eq_system* _system) :
-	system(_system),
-	novelty_valid(false),
-	novelty(value::fitness_unassigned),
-	fitness_valid(false),
-	fitness(value::fitness_unassigned)
+	system(_system)
 {};
 
 gp::individual::~individual() {

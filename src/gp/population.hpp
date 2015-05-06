@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 
 #include "../define.hpp"
 #include "../type.hpp"
@@ -51,7 +52,6 @@ namespace diffysynth { namespace gp {
 			// reproduction parameters
 			// numeric mutation
 			type::cont_64 nm_proportion;
-			type::cont_64 nm_temperature;
 			type::disc_32_u nm_selection_type;
 			type::cont_64 nm_selection_percentile;
 			// mutation
@@ -83,15 +83,34 @@ namespace diffysynth { namespace gp {
 		population(rng& _r, const population_state& _state);
 		~population();
 
+		// initialize
 		void initialize();
+
+		// manual evolution
+		type::id individual_unevaluated_id_get();
+		individual* individual_get(type::id individual_id);
+		void individual_fitness_report(type::id individual_id, type::fitness individual_fitness);
 		void generation_next();
 
+		// automatic evolution
+		void evolve(const evaluator& e);
+
 	private:
+		type::id generation_current_individual_register(individual* individual_new);
+
 		rng& r;
 		const population_state& state;
 
+		type::id individual_next_id;
+
 		typedef std::map<type::id, individual*> generation;
 		std::unordered_map<type::disc_32_u, generation* > generations;
+
+		type::id generation_current_id;
+		std::unordered_set<type::id> generation_current_unevaluated;
+		std::unordered_set<type::id> generation_current_evaluated;
+		std::unordered_map<type::id, type::fitness> generation_current_fitness;
+		std::unordered_map<type::id, type::fitness> generation_current_novelty;
 	};
 }}
 
