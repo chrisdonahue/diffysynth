@@ -71,10 +71,15 @@ void gp::population::generation_next() {
 	ensure(generation_current_unevaluated.size() == 0);
 #endif
 
+
+
 	// TODO
 
 	generation_current_evaluated.clear();
 	generation_current_fitness.clear();
+};
+
+void gp::population::evolve(const evaluator& e) {
 };
 
 type::id gp::population::generation_current_individual_register(individual* individual_new) {

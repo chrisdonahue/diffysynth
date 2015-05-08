@@ -1,9 +1,6 @@
 #ifndef DIFFYSYNTH_GP_EVALUATOR
 #define DIFFYSYNTH_GP_EVALUATOR
 
-#include <vector>
-#include <map>
-
 #include "../define.hpp"
 #include "../type.hpp"
 #include "../value.hpp"
@@ -15,8 +12,7 @@ namespace diffysynth { namespace gp {
 	public:
 		evaluator();
 
-		virtual type::fitness evaluate(individual& individual) = 0;
-
+		virtual type::fitness evaluate(individual& individual) const = 0;
 	private:
 	};
 }}

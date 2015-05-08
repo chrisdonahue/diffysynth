@@ -117,6 +117,7 @@ set(HEADERS
 	src/stepper/stepper_base.hpp
 	src/stepper/runge_kutta_4.hpp
 	src/gp/population.hpp
+	src/gp/selector.hpp
 	src/gp/evaluator.hpp
 	src/gp/individual.hpp
 )
@@ -149,6 +150,7 @@ set(HEADERS_STEPPER
 
 set(HEADERS_GP
 	src/gp/population.hpp
+	src/gp/selector.hpp
 	src/gp/evaluator.hpp
 	src/gp/individual.hpp
 )
@@ -168,6 +170,7 @@ set(SOURCES
 	src/stepper/stepper_base.cpp
 	src/stepper/runge_kutta_4.cpp
 	src/gp/population.cpp
+	src/gp/selector.cpp
 	src/gp/evaluator.cpp
 	src/gp/individual.cpp
 )
@@ -196,6 +199,7 @@ set(SOURCES_STEPPER
 
 set(SOURCES_GP
 	src/gp/population.cpp
+	src/gp/selector.cpp
 	src/gp/evaluator.cpp
 	src/gp/individual.cpp
 )
