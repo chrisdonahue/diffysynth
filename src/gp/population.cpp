@@ -35,7 +35,7 @@ void gp::population::initialize() {
 
 	for (type::disc_32_u equation_height = state.equation_height_max; equation_height >= state.equation_height_min; equation_height--) {
 		for (type::disc_32_u i = 0; i < grow_per_height_value; i++) {
-			individual* individual_new = individual::grow(r, state.primitives_all_get(), state.primitives_nonterminals_get, state.primitives_terminals_get(), state.diff_eqs_num, state.parameters_num, equation_height);
+			individual* individual_new = individual::grow(r, state.primitives_all_get(), state.primitives_nonterminals_get(), state.primitives_terminals_get(), state.diff_eqs_num, state.parameters_num, equation_height);
 
 			if (generation_current_individual_register(individual_new) == state.size - 1) {
 				return;
@@ -43,7 +43,7 @@ void gp::population::initialize() {
 		}
 
 		for (type::disc_32_u i = 0; i < full_per_height_value; i++) {
-			individual* individual_new = individual::full(r, state.primitives_all_get(), state.primitives_nonterminals_get, state.primitives_terminals_get(), state.diff_eqs_num, state.parameters_num, equation_height);
+			individual* individual_new = individual::full(r, state.primitives_all_get(), state.primitives_nonterminals_get(), state.primitives_terminals_get(), state.diff_eqs_num, state.parameters_num, equation_height);
 
 			if (generation_current_individual_register(individual_new) == state.size - 1) {
 				return;
