@@ -52,6 +52,8 @@ namespace diffysynth { namespace value {
 #endif
 
 	const type::fitness fitness_unassigned = static_cast<type::fitness>(-1.0);
+	const type::fitness fitness_infinity = static_cast<type::fitness>(value::infinity_64);
+	const type::fitness fitness_infinity_n = static_cast<type::fitness>(value::infinity_n_64);
 
 }}
 

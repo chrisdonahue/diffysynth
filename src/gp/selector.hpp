@@ -33,6 +33,7 @@ namespace diffysynth { namespace gp { namespace selector {
 
 	private:
 		type::boolean prefer_lower;
+		std::vector<std::pair<type::id, type::fitness> > distribution;
 	};
 }}}
 
